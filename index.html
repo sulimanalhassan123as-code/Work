@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Tiger Intro</title>
+
+  <!-- Preload the video for faster playback -->
+  <link rel="preload" as="video" href="assets/tiger-bite.mp4" type="video/mp4">
+  <link rel="preload" as="image" href="assets/tiger-open.jpg">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-red">
+
+  <!-- Intro container: video takes entire viewport -->
+  <div id="intro" class="intro">
+    <video id="introVideo"
+           class="intro-video"
+           playsinline
+           muted
+           preload="auto"
+           poster="assets/tiger-open.jpg"
+           aria-hidden="true"
+           tabindex="-1"
+    >
+      <!-- Provide multiple sources for better browser compatibility -->
+      <source src="assets/tiger-bite.mp4" type="video/mp4">
+      <source src="assets/tiger-bite.webm" type="video/webm">
+      <!-- If browser does not support video, fallback to img (also handled by JS) -->
+    </video>
+
+    <!-- Fallback static image displayed by JS when the video cannot play -->
+    <div id="fallback" class="fallback" aria-hidden="true">
+      <img src="assets/tiger-open.jpg" alt="Tiger with mouth open" class="fallback-img">
+    </div>
+
+    <!-- Small overlay if autoplay is blocked: user can tap to play -->
+    <button id="tapToPlay" class="tap-to-play visually-hidden" aria-hidden="true">
+      Tap to play
+    </button>
+  </div>
+
+  <!-- Main site content (hidden until after intro, optional) -->
+  <main id="mainContent" class="main-content hidden" role="main" aria-hidden="true">
+    <div class="content-inner">
+      <h1>Welcome</h1>
+      <p>This is the main site content. It appears after the intro video (optional).</p>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
