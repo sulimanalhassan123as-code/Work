@@ -1,0 +1,124 @@
+/* Solid bright red background throughout intro */
+:root {
+  --bright-red: #ff0000;
+  --transition-duration: 600ms;
+  --max-content-width: 1100px;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: var(--bright-red);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ensure the intro fills the viewport */
+.intro {
+  position: fixed;
+  inset: 0;
+  display: block;
+  background: var(--bright-red);
+  z-index: 40;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Video covers the viewport and centers the tiger for dramatic effect */
+.intro-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* ensures video covers viewport, cropping edges if needed */
+  object-position: center center;
+  background: var(--bright-red);
+  -webkit-filter: none;
+  filter: none;
+}
+
+/* Fallback image container: centered, covers viewport */
+.fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bright-red);
+  z-index: 45; /* above video when visible */
+}
+
+/* Fallback image scaled responsively */
+.fallback-img {
+  max-width: 95%;
+  max-height: 95%;
+  width: auto;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  border-radius: 0;
+}
+
+/* Tap to play overlay button (hidden by default) */
+.tap-to-play {
+  position: absolute;
+  z-index: 60;
+  bottom: 6vh;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 24px;
+  cursor: pointer;
+}
+
+/* Visually hidden utility */
+.visually-hidden {
+  display: none;
+}
+
+/* Main content (hidden initially) */
+.main-content {
+  position: relative;
+  min-height: 100vh;
+  padding: 48px 16px;
+  box-sizing: border-box;
+  z-index: 10;
+  background: white;
+  color: #111;
+}
+
+/* Hidden state utility */
+.hidden {
+  display: none;
+}
+
+/* Fade transition when showing main content */
+.fade-out {
+  animation: fadeOut var(--transition-duration) ease forwards;
+}
+.fade-in {
+  animation: fadeIn var(--transition-duration) ease forwards;
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to   { opacity: 0; visibility: hidden; }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; visibility: visible; }
+}
+
+/* Ensure layout remains good on very small/large screens */
+.content-inner {
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  text-align: center;
+}
