@@ -2,53 +2,36 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>Tiger Intro</title>
-
-  <!-- Preload the video for faster playback -->
-  <link rel="preload" as="video" href="assets/tiger-bite.mp4" type="video/mp4">
-  <link rel="preload" as="image" href="assets/tiger-open.jpg">
-
-  <link rel="stylesheet" href="styles.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Never Hide — The Garazy</title>
+  <meta name="description" content="Interactive starfield — Never Hide. Is the master coding." />
+  <link rel="stylesheet" href="styles.css" />
 </head>
-<body class="bg-red">
-
-  <!-- Intro container: video takes entire viewport -->
-  <div id="intro" class="intro">
-    <video id="introVideo"
-           class="intro-video"
-           playsinline
-           muted
-           preload="auto"
-           poster="assets/tiger-open.jpg"
-           aria-hidden="true"
-           tabindex="-1"
-    >
-      <!-- Provide multiple sources for better browser compatibility -->
-      <source src="assets/tiger-bite.mp4" type="video/mp4">
-      <source src="assets/tiger-bite.webm" type="video/webm">
-      <!-- If browser does not support video, fallback to img (also handled by JS) -->
-    </video>
-
-    <!-- Fallback static image displayed by JS when the video cannot play -->
-    <div id="fallback" class="fallback" aria-hidden="true">
-      <img src="assets/tiger-open.jpg" alt="Tiger with mouth open" class="fallback-img">
-    </div>
-
-    <!-- Small overlay if autoplay is blocked: user can tap to play -->
-    <button id="tapToPlay" class="tap-to-play visually-hidden" aria-hidden="true">
-      Tap to play
-    </button>
+<body>
+  <!-- Fallback content shown if canvas is not supported or if animations are disabled -->
+  <div id="fallback" class="fallback" aria-hidden="true">
+    <div class="fallback-stars"></div>
+    <div class="fallback-text">Never Hide. Is the master coding.</div>
   </div>
 
-  <!-- Main site content (hidden until after intro, optional) -->
-  <main id="mainContent" class="main-content hidden" role="main" aria-hidden="true">
-    <div class="content-inner">
-      <h1>Welcome</h1>
-      <p>This is the main site content. It appears after the intro video (optional).</p>
-    </div>
-  </main>
+  <!-- Canvas for the interactive starfield -->
+  <canvas id="garazy"></canvas>
 
-  <script src="script.js"></script>
+  <!-- Controls: optional music toggle -->
+  <div id="controls" class="controls">
+    <button id="soundToggle" title="Toggle ambient sound">Play ambient</button>
+  </div>
+
+  <!-- small attribution / instructions -->
+  <div class="info">
+    Tap or click anywhere — watch the garazy swirl. Idle for ~50s to reveal the star-text.
+  </div>
+
+  <audio id="ambient" loop preload="auto" aria-hidden="true">
+    <!-- No audio file included; users can replace 'assets/ambient.mp3' with their own -->
+    <source src="assets/ambient.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script src="script.js" defer></script>
 </body>
 </html>
