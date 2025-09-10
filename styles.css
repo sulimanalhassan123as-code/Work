@@ -1,341 +1,183 @@
-:root{
-  --bg-1: #05060a;
-  --bg-2: #07122a; /* deep navy for subtle gradient */
-  --gold-1: #ffd86b;
-  --gold-2: #c8921f;
-  --accent: #fbe8a6;
-  --glass: rgba(255,255,255,0.03);
-  --shadow: rgba(10,8,6,0.65);
-  --stage-padding: 24px;
-}
+// Script orchestrates the interaction flow: open -> reveal text -> blink & ring -> mascot -> robot
+(function(){
+  const box = document.getElementById('goldenBox');
+  const reveal = document.getElementById('reveal');
+  const ring = document.getElementById('ring');
+  const mascot = document.getElementById('mascot');
+  const robot = document.getElementById('robot');
+  const audioToggle = document.getElementById('audioToggle');
+  const resetBtn = document.getElementById('resetBtn');
 
-/* Global reset */
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
-  font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  background: radial-gradient(1200px 600px at 10% 10%, rgba(255,255,255,0.02), transparent),
-              linear-gradient(180deg, var(--bg-2) 0%, var(--bg-1) 100%);
-  color:var(--accent);
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  overflow:hidden;
-}
+  // Timings (ms) for sequence; tweak to taste
+  const TIMINGS = {
+    openMs: 420,
+    revealDelay: 420,
+    revealVisibleMs: 1800,
+    afterRevealDelay: 380,
+    mascotShowMs: 420,
+    mascotMoveMs: 1200,
+    morphDelay: 1400
+  };
 
-/* Stars / subtle sparkles */
-.ambient-stars{
-  position:fixed;
-  inset:0;
-  background-image:
-    radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-    radial-gradient(rgba(255,255,255,0.02) 1px, transparent 1px);
-  background-size: 300px 200px, 200px 150px;
-  opacity:0.8;
-  pointer-events:none;
-  mix-blend-mode:screen;
-}
+  // Audio setup (optional shimmering sounds)
+  let audioCtx = null;
+  function ensureAudio(){
+    if(audioCtx) return;
+    try{
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }catch(e){
+      audioCtx = null;
+    }
+  }
+  function playTapShimmer(){
+    if(!audioToggle.checked) return;
+    ensureAudio();
+    if(!audioCtx) return;
+    const t = audioCtx.currentTime;
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    // quick shimmer: descending chirp
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(800, t);
+    osc.frequency.exponentialRampToValueAtTime(320, t + 0.18);
+    gain.gain.setValueAtTime(0.001, t);
+    gain.gain.exponentialRampToValueAtTime(0.08, t + 0.02);
+    gain.gain.exponentialRampToValueAtTime(0.0005, t + 0.22);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start(t);
+    osc.stop(t + 0.25);
+  }
 
-/* Stage container */
-.stage{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:var(--stage-padding);
-  position:relative;
-}
+  function playAmbientTone(){
+    if(!audioToggle.checked) return;
+    ensureAudio();
+    if(!audioCtx) return;
+    // a faint, slowly pulsing background tone (not looping here to keep it lightweight)
+    const t = audioCtx.currentTime;
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = 'sine';
+    osc.frequency.value = 140;
+    gain.gain.value = 0.0005;
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start(t);
+    // fade out slowly; short-lived so it doesn't persist forever
+    gain.gain.exponentialRampToValueAtTime(0.00005, t + 6);
+    osc.stop(t + 6.2);
+  }
 
-/* Golden box */
-.golden-box{
-  --box-size: clamp(160px, 24vmin, 260px);
-  width:var(--box-size);
-  height:calc(var(--box-size) * 0.6);
-  border-radius:14px;
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)),
-    linear-gradient(90deg, var(--gold-1), var(--gold-2));
-  border:1px solid rgba(255,255,255,0.06);
-  box-shadow:
-    0 6px 30px rgba(0,0,0,0.7),
-    inset 0 2px 12px rgba(255,255,255,0.08),
-    0 0 40px rgba(200,150,40,0.06);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-  cursor:pointer;
-  transform-style:preserve-3d;
-  transition:transform 420ms cubic-bezier(.2,.9,.2,1), box-shadow 360ms;
-  outline:none;
-  -webkit-tap-highlight-color: transparent;
-}
+  // Utility: set aria-pressed
+  function setPressed(val){
+    box.setAttribute('aria-pressed', val ? 'true' : 'false');
+  }
 
-/* initial pulse */
-.golden-box::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius:inherit;
-  box-shadow: 0 0 40px rgba(212,175,55,0.12);
-  opacity:0.9;
-  animation:boxPulse 2.8s ease-in-out infinite;
-}
-@keyframes boxPulse{
-  0%{transform:scale(1); opacity:0.9}
-  50%{transform:scale(1.02); opacity:1}
-  100%{transform:scale(1); opacity:0.9}
-}
+  // Reset everything to initial state
+  function resetState(){
+    // remove all classes and hide elements
+    box.classList.remove('open', 'glow-blink');
+    reveal.classList.remove('visible');
+    ring.classList.remove('active');
+    mascot.classList.remove('visible','moving');
+    robot.classList.remove('visible');
+    setPressed(false);
+  }
 
-/* inner text in box */
-.box-inner{
-  position:relative;
-  z-index:2;
-  text-align:center;
-  padding:8px 14px;
-}
-.box-text{
-  display:block;
-  font-family:"Playfair Display", serif;
-  color:rgba(20,12,6,0.95);
-  text-shadow: 0 1px 0 rgba(255,255,255,0.15);
-  letter-spacing:0.6px;
-  font-weight:600;
-  font-size: clamp(13px, 1.8vmin, 18px);
-}
+  // Sequence when box is clicked/tapped
+  let isAnimating = false;
+  async function startSequence(){
+    if(isAnimating) return; // prevent overlapping sequences
+    isAnimating = true;
 
-/* subtle glare */
-.glare{
-  position:absolute;
-  top:-10%;
-  left:-15%;
-  width:140%;
-  height:120%;
-  background:linear-gradient(120deg, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.02) 25%, rgba(255,255,255,0.03) 28%, transparent 60%);
-  transform:rotate(-16deg);
-  filter:blur(8px) saturate(1.2);
-  mix-blend-mode:overlay;
-  pointer-events:none;
-  opacity:0.8;
-  animation:glareShift 5s linear infinite;
-}
-@keyframes glareShift{
-  0%{transform:translateX(-20%) rotate(-16deg)}
-  50%{transform:translateX(20%) rotate(-14deg)}
-  100%{transform:translateX(-20%) rotate(-16deg)}
-}
+    playTapShimmer();
 
-/* Open/pop state */
-.golden-box.open{
-  transform: translateZ(40px) scale(1.06) rotateX(6deg);
-  box-shadow:
-    0 18px 80px rgba(6,6,10,0.8),
-    0 8px 30px rgba(200,150,40,0.15),
-    inset 0 4px 24px rgba(255,255,255,0.06);
-}
+    // open / pop
+    box.classList.add('open');
+    setPressed(true);
 
-/* reveal text above box */
-.reveal-text{
-  position:absolute;
-  bottom: calc(50% + 20px);
-  left:50%;
-  transform:translateX(-50%) translateY(40px);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  pointer-events:none;
-  opacity:0;
-  transition: opacity 360ms ease, transform 360ms ease;
-  max-width: min(80%, 800px);
-}
-.reveal-text .headline{
-  font-family:"Playfair Display", serif;
-  font-size: clamp(18px, 3.2vmin, 36px);
-  color:var(--gold-1);
-  text-align:center;
-  text-shadow:
-    0 0 10px rgba(212,175,55,0.25),
-    0 2px 12px rgba(12,8,6,0.5);
-  font-weight:700;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  padding:6px 12px;
-  border-radius:8px;
-}
+    await wait(TIMINGS.openMs);
 
-/* reveal visible state */
-.reveal-text.visible{
-  opacity:1;
-  transform:translateX(-50%) translateY(-8px);
-  animation:headlineGlow 1.8s ease forwards;
-}
-@keyframes headlineGlow{
-  0%{filter:blur(6px); opacity:0}
-  60%{filter:blur(0); opacity:1; text-shadow: 0 0 24px rgba(212,175,55,0.28)}
-  100%{filter:blur(0); opacity:1}
-}
+    // reveal headline
+    reveal.classList.add('visible');
+    playAmbientTone();
 
-/* box blinking shining animation (after reveal) */
-.golden-box.glow-blink{
-  animation:boxBlink 1.6s ease-in-out infinite;
-  box-shadow:
-    0 14px 50px rgba(200,150,40,0.13),
-    0 6px 24px rgba(212,175,55,0.08),
-    inset 0 6px 30px rgba(255,255,255,0.06);
-}
-@keyframes boxBlink{
-  0%{filter:brightness(1)}
-  40%{filter:brightness(1.25) saturate(1.05)}
-  100%{filter:brightness(1)}
-}
+    await wait(TIMINGS.revealVisibleMs);
 
-/* pulsating ring around box */
-.ring{
-  position:absolute;
-  width: calc(var(--box-size) + 40px);
-  height: calc(var(--box-size) + 40px);
-  border-radius:50%;
-  left:50%;
-  top:50%;
-  transform:translate(-50%,-50%) scale(0.8);
-  pointer-events:none;
-  opacity:0;
-  display:block;
-  z-index:1;
-  transition:opacity 280ms ease;
-}
-.ring::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius:inherit;
-  box-shadow: 0 0 40px 12px rgba(212,175,55,0.06), 0 0 120px 28px rgba(212,175,55,0.03);
-  filter: blur(6px);
-  mix-blend-mode:screen;
-}
-.ring.active{
-  opacity:1;
-  animation:ringPulse 2s ease-in-out infinite;
-  transform:translate(-50%,-50%) scale(1);
-}
-@keyframes ringPulse{
-  0%{transform:translate(-50%,-50%) scale(0.95); opacity:0.9}
-  50%{transform:translate(-50%,-50%) scale(1.05); opacity:1}
-  100%{transform:translate(-50%,-50%) scale(0.95); opacity:0.9}
-}
+    // begin blinking box and ring
+    box.classList.add('glow-blink');
+    ring.classList.add('active');
 
-/* Mascot and robot positioning and animation */
-.mascot, .robot{
-  position:absolute;
-  left:50%;
-  top: calc(50% - 38%);
-  transform:translateX(-50%) translateY(40px);
-  width:120px;
-  height:120px;
-  z-index:3;
-  pointer-events:none;
-  opacity:0;
-  transition: opacity 420ms ease, transform 420ms ease;
-}
-.mascot.visible{
-  opacity:1;
-  transform:translateX(-50%) translateY(0);
-  animation:mascotFloat 2.6s ease-in-out infinite;
-}
-@keyframes mascotFloat{
-  0%{transform:translateX(-50%) translateY(0)}
-  50%{transform:translateX(-50%) translateY(-6px)}
-  100%{transform:translateX(-50%) translateY(0)}
-}
-/* side to side mascot bob */
-.mascot.moving{
-  animation:mascotMove 3.4s ease-in-out infinite;
-}
-@keyframes mascotMove{
-  0%{transform:translateX(-50%) translateY(0) translateX(-6px)}
-  50%{transform:translateX(-50%) translateY(0) translateX(6px)}
-  100%{transform:translateX(-50%) translateY(0) translateX(-6px)}
-}
+    await wait(TIMINGS.afterRevealDelay);
 
-/* Robot appears and arms animate */
-.robot.visible{
-  opacity:1;
-  transform:translateX(-50%) translateY(0) scale(1);
-}
-.robot-svg{ width:100%; height:100%; display:block; }
-.arm-left, .arm-right{
-  transform-origin: 18px 68px;
-  transition: transform 220ms linear;
-}
-.arm-right{ transform-origin: 142px 68px; }
+    // show mascot and start side-to-side move
+    mascot.classList.add('visible');
+    // small pause then start moving
+    await wait(200);
+    mascot.classList.add('moving');
 
-/* robot coding motion — rotate arms and move hands */
-.robot.visible .arm-left{ animation:leftArm 1.4s ease-in-out infinite; }
-.robot.visible .arm-right{ animation:rightArm 1.4s ease-in-out infinite; }
-@keyframes leftArm{
-  0%{transform:rotate(4deg)}
-  50%{transform:rotate(-18deg)}
-  100%{transform:rotate(4deg)}
-}
-@keyframes rightArm{
-  0%{transform:rotate(-6deg)}
-  50%{transform:rotate(18deg)}
-  100%{transform:rotate(-6deg)}
-}
+    // allow mascot to move for a while then morph to robot
+    await wait(TIMINGS.mascotMoveMs);
 
-/* robot laptop faint screen glow */
-.robot.visible .laptop rect:nth-child(2){
-  animation:screenGlow 2.2s ease-in-out infinite;
-  stroke-dasharray: 0;
-}
-@keyframes screenGlow{
-  0%{filter:drop-shadow(0 0 2px rgba(212,175,55,0.06))}
-  50%{filter:drop-shadow(0 0 8px rgba(212,175,55,0.18))}
-  100%{filter:drop-shadow(0 0 2px rgba(212,175,55,0.06))}
-}
+    // morph: fade mascot out, show robot
+    mascot.classList.remove('moving');
+    mascot.classList.remove('visible');
+    robot.classList.add('visible');
 
-/* Controls */
-.controls{
-  position:fixed;
-  right:16px;
-  bottom:16px;
-  display:flex;
-  gap:10px;
-  align-items:center;
-  z-index:20;
-}
-.sound-toggle{
-  display:flex;
-  gap:8px;
-  align-items:center;
-  background:var(--glass);
-  color:var(--accent);
-  padding:8px 10px;
-  border-radius:999px;
-  font-size:13px;
-  backdrop-filter: blur(6px) saturate(1.1);
-  border:1px solid rgba(255,255,255,0.03);
-}
-.sound-toggle input{ width:14px; height:14px }
-.reset-btn{
-  background:transparent;
-  border:1px solid rgba(255,255,255,0.06);
-  color:var(--accent);
-  padding:8px 12px;
-  border-radius:8px;
-  cursor:pointer;
-}
+    // keep robot coding motion; when finished, leave glowing state on box
+    await wait(TIMINGS.morphDelay);
 
-/* Accessibility / reduced motion fallback */
-@media (prefers-reduced-motion: reduce){
-  .golden-box::before, .glare, .ring.active, .mascot.moving, .mascot, .robot, .reveal-text, .golden-box{ animation: none !important; transition:none !important; transform:none !important; }
-  .golden-box{ box-shadow: 0 10px 24px rgba(0,0,0,0.6); }
-  .reveal-text.visible{ transform:translateX(-50%) translateY(0); opacity:1; }
-}
+    // allow user to repeat; we keep glow and ring active
+    isAnimating = false;
+  }
 
-/* Responsive tweaks */
-@media (max-width:520px){
-  .controls{ right:10px; bottom:10px; }
-  .mascot, .robot{ width:86px; height:86px; top: calc(50% - 48%); }
-  .reveal-text .headline{ font-size: clamp(14px, 4.5vw, 20px); padding:6px 8px; }
-}
+  // small helper: promise-based timeout
+  function wait(ms){ return new Promise(r => setTimeout(r, ms)); }
+
+  // event handlers
+  box.addEventListener('click', (e) => {
+    startSequence();
+  });
+
+  box.addEventListener('keydown', (e) => {
+    if(e.key === 'Enter' || e.key === ' '){
+      e.preventDefault();
+      startSequence();
+    }
+  });
+
+  resetBtn.addEventListener('click', (e) => {
+    resetState();
+  });
+
+  // On load: reset to ensure consistent state
+  resetState();
+
+  // reduced-motion fallback: if user prefers reduced-motion, show static fallback (no animations)
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(prefersReduced){
+    // make everything visible but non-animated: static fallback
+    reveal.classList.add('visible');
+    mascot.classList.add('visible');
+    robot.classList.add('visible');
+    ring.classList.add('active');
+    box.classList.add('glow-blink');
+  }
+
+  // small helper: unlock audio on first user gesture if necessary
+  window.addEventListener('pointerdown', () => {
+    if(!audioCtx && audioToggle.checked){
+      try{
+        ensureAudio();
+        if(audioCtx && audioCtx.state === 'suspended'){
+          audioCtx.resume();
+        }
+      }catch(e){}
+    }
+  }, { once: true });
+
+  // initial keyboard accessibility focus ring
+  box.addEventListener('focus', () => box.classList.add('focus'));
+  box.addEventListener('blur', () => box.classList.remove('focus'));
+
+})();
