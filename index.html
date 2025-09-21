@@ -2,81 +2,11 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Islamic Google — Search</title>
-<link rel="icon" href="data:,">
-<style>
-  :root{
-    --sea-dark:#148f86;
-    --sea-mid:#20B2AA;
-    --sea-light:#aaf0e8;
-    --gold:#d4af37;
-    --glass: rgba(255,255,255,0.06);
-    --card: rgba(255,255,255,0.08);
-    --text: #012a2a;
-    --muted: rgba(0,0,0,0.55);
-    --radius: 12px;
-    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  }
-  html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--sea-dark),var(--sea-mid) 50%,var(--sea-light));color:#fff}
-  /* animated flowing lines */
-  .flow {
-    position:fixed; inset:0; pointer-events:none; z-index:0;
-    background-image:
-      radial-gradient(circle at 10% 10%, rgba(255,255,255,0.02), transparent 10%),
-      radial-gradient(circle at 85% 80%, rgba(255,255,255,0.02), transparent 10%);
-  }
-  .container{max-width:1100px;margin:0 auto;padding:36px 20px;position:relative;z-index:2}
-  header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:28px}
-  .brand{display:flex;align-items:center;gap:12px}
-  .logo {
-    width:64px;height:64px;border-radius:14px;background:linear-gradient(135deg,var(--sea-mid),var(--sea-light));
-    display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:22px;box-shadow:0 6px 16px rgba(0,0,0,0.15);
-  }
-  h1{font-size:28px;margin:0;color:#fff}
-  p.lead{margin:6px 0 0;color:rgba(255,255,255,0.9)}
-  /* Hero */
-  .hero{display:grid;grid-template-columns:1fr;align-items:center;gap:18px;padding:42px 20px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border-radius:20px;box-shadow:0 8px 30px rgba(0,0,0,0.12)}
-  .search-wrap{display:flex;gap:8px;align-items:center}
-  .search-input{
-    flex:1;padding:16px 18px;border-radius:14px;border:none;outline:none;font-size:16px;background:rgba(255,255,255,0.95);color:#013;
-    box-shadow:0 6px 20px rgba(0,0,0,0.18);
-  }
-  .btn{
-    background:var(--gold);color:#082a22;padding:12px 16px;border-radius:12px;border:none;font-weight:700;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,0.15)
-  }
-  .controls{display:flex;gap:8px;align-items:center}
-  select, .checkbox {
-    background:rgba(255,255,255,0.95);border-radius:12px;padding:10px 12px;border:none;color:#013; font-weight:600;
-  }
-  /* results */
-  #results{margin-top:20px}
-  .result{background:var(--card);padding:14px;border-radius:12px;margin-bottom:12px;color:#fff}
-  .result a.title{color:#fff;font-size:18px;font-weight:700;text-decoration:none}
-  .result .link{color:rgba(255,255,255,0.75);font-size:13px;margin-top:6px;display:block}
-  .result .snippet{color:rgba(255,255,255,0.92);margin-top:8px;line-height:1.45}
-  .meta{display:flex;gap:10px;align-items:center;margin-top:8px;color:rgba(255,255,255,0.75);font-size:13px}
-  .pagination{display:flex;gap:10px;align-items:center;margin:18px 0}
-  .muted{color:rgba(255,255,255,0.85)}
-  /* footer */
-  footer{margin-top:28px;padding:16px;border-radius:12px;background:rgba(0,0,0,0.06);color:rgba(255,255,255,0.9)}
-  .flex-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
-  /* small screens */
-  @media (max-width:720px){
-    .hero{padding:20px}
-    h1{font-size:22px}
-    .logo{width:52px;height:52px;font-size:18px}
-  }
-  /* subtle line animation using keyframes */
-  .calligraphic {
-    position:absolute; left: -20%; top: -10%; width: 140%; height: 140%; opacity: 0.12; pointer-events:none;
-    filter: drop-shadow(0 6px 16px rgba(0,0,0,0.12));
-    animation: drift 14s linear infinite;
-  }
-  @keyframes drift {0%{transform:translateX(0) translateY(0) rotate(0)}50%{transform:translateX(6%) translateY(2%) rotate(1deg)}100%{transform:translateX(0) translateY(0) rotate(0)}}
-  .small {font-size:12px;color:rgba(255,255,255,0.85)}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Islamic Google — Home</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="assets/fonts.css">
 </head>
 <body>
   <div class="flow"></div>
@@ -88,230 +18,77 @@
     </g>
   </svg>
 
-  <div class="container">
-    <header>
+  <header class="site-header">
+    <div class="container header-inner">
       <div class="brand">
         <div class="logo">IG</div>
         <div>
           <h1>Islamic Google</h1>
-          <p class="lead small">Reliable searches for Islamic knowledge — Quran, Hadith, scholars, history and more.</p>
+          <p class="lead">Centralized searches for Quran, Hadith, scholars, history and Islamic law.</p>
         </div>
       </div>
-      <div class="small muted">Contact: <a href="mailto:sulleyalhassan.178.as@gmail.com" style="color:#fff;text-decoration:underline">sulleyalhassan.178.as@gmail.com</a> &nbsp; | &nbsp; WhatsApp: <a href="https://wa.me/233599931348" style="color:#fff;text-decoration:underline">+233 599 931 348</a></div>
-    </header>
+      <nav>
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="submit.html" class="nav-link">Submit</a>
+      </nav>
+    </div>
+  </header>
 
-    <main>
-      <section class="hero">
-        <div style="display:flex;flex-direction:column;gap:12px">
-          <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap">
-            <div style="min-width:260px">
-              <div style="font-weight:700;font-size:20px">Search Islamic Topics</div>
-              <div class="small muted">Type a query — results prioritized from trusted Islamic sources when filter selected.</div>
-            </div>
-            <div style="flex:1" class="controls">
-              <select id="category" class="checkbox" title="Choose category/filter">
-                <option value="all">All Web (default)</option>
-                <option value="curated">Trusted Islamic Sites</option>
-                <option value="quran">Quran</option>
-                <option value="hadith">Hadith</option>
-                <option value="history">History</option>
-                <option value="fiqh">Islamic Law (Fiqh)</option>
-              </select>
-              <div style="display:flex;gap:6px;align-items:center">
-                <button id="voiceBtn" class="btn" style="background:transparent;color:#fff;border:1px solid rgba(255,255,255,0.12)">🎙️</button>
-              </div>
-            </div>
-          </div>
+  <main class="container">
+    <section class="hero card">
+      <div class="hero-left">
+        <h2>Search Islamic Knowledge</h2>
+        <p class="muted">Type a query and press Search — results prioritized from trusted Islamic sources when filter selected.</p>
 
-          <div class="search-wrap">
-            <input id="q" class="search-input" placeholder="Search... e.g. 'hadith on patience' or 'exegesis of Al-Fatiha'"/>
-            <button id="searchBtn" class="btn">Search</button>
-          </div>
+        <div class="controls">
+          <select id="category" title="Choose category/filter" aria-label="Category filter">
+            <option value="all">All Web (default)</option>
+            <option value="curated">Trusted Islamic Sites</option>
+            <option value="quran">Quran</option>
+            <option value="hadith">Hadith</option>
+            <option value="history">History</option>
+            <option value="fiqh">Fiqh</option>
+          </select>
+
+          <button id="voiceBtn" class="icon-btn" title="Voice search">🎙️</button>
         </div>
 
-        <div style="min-width:260px;text-align:right;">
-          <div style="background:rgba(255,255,255,0.06);padding:18px;border-radius:12px">
-            <strong>Islamic Google</strong>
-            <p class="small muted" style="margin-top:8px">Centralized resource for Islamic knowledge. Submit resources via the Contact email.</p>
-          </div>
+        <div class="search-wrap">
+          <input id="q" class="search-input" placeholder="e.g. hadith on patience, tafsir al-fatiha" aria-label="Search query">
+          <button id="searchBtn" class="btn">Search</button>
         </div>
-      </section>
 
+        <div class="quick-links small muted">
+          Try: <button class="chip" onclick="quick('hadith patience')">hadith patience</button><button class="chip" onclick="quick('surah al-fatiha tafsir')">surah al-fatiha tafsir</button>
+        </div>
+      </div>
+
+      <aside class="hero-right">
+        <div class="card promo">
+          <h3>Islamic Google</h3>
+          <p class="muted">A curated search experience for authentic Islamic resources.</p>
+          <p class="small muted"><strong>Contact:</strong> <a href="mailto:sulleyalhassan.178.as@gmail.com">sulleyalhassan.178.as@gmail.com</a><br><strong>WhatsApp:</strong> <a href="https://wa.me/233599931348">+233 599 931 348</a></p>
+        </div>
+      </aside>
+    </section>
+
+    <section id="resultsPanel" class="results-panel">
       <div id="results" aria-live="polite"></div>
-
       <div id="pagination" class="pagination"></div>
+    </section>
 
-      <footer>
-        <div class="flex-row">
-          <div><strong>About:</strong> Islamic Google — search and prioritize trusted Islamic resources.</div>
-          <div style="margin-left:auto" class="small muted">Developed by Slave Learn and Hustle</div>
+    <footer class="card footer">
+      <div class="flex">
+        <div>
+          <strong>About:</strong> Islamic Google — mission: share accurate Islamic knowledge.
         </div>
-        <div style="margin-top:8px" class="small muted">Search Engine ID: 909f5c55f2a504e45</div>
-      </footer>
-    </main>
-  </div>
+        <div class="muted" style="margin-left:auto">Developed by Slave Learn and Hustle</div>
+      </div>
+      <div class="small muted">Search Engine ID: 909f5c55f2a504e45</div>
+    </footer>
+  </main>
 
-<script>
-/* ============ CONFIG ============ */
-/* WARNING: Client-side key exposure. For production: use server-side proxy. */
-const API_KEY = 'AIzaSyAsscFyli7AR5vJQtfUoDV6adHlK3Bh-C8'; // your API key (as provided)
-const CX = '909f5c55f2a504e45'; // your Search Engine ID (as provided)
-const RESULTS_PER_PAGE = 10; // Google default is 10
-/* curated domain lists for 'Trusted Islamic Sites' filter */
-const curated = [
-  'quran.com',
-  'sunnah.com',
-  'islamqa.info',
-  'al-islam.org',
-  'islamweb.net',
-  'searchtruth.com'
-];
-/* category-specific site hints (used when user chooses a category) */
-const categorySites = {
-  quran: ['quran.com', 'tafsir.org', 'quranexplorer.com'],
-  hadith: ['sunnah.com', 'al-islam.org', 'hadithcollection.com'],
-  history: ['islamic-history.com','al-islam.org'],
-  fiqh: ['islamqa.info','ahlalhadeeth.com']
-};
-/* ============ END CONFIG ============ */
-
-const qEl = document.getElementById('q');
-const resultsEl = document.getElementById('results');
-const searchBtn = document.getElementById('searchBtn');
-const categoryEl = document.getElementById('category');
-const paginationEl = document.getElementById('pagination');
-const voiceBtn = document.getElementById('voiceBtn');
-
-let lastQuery = '';
-let currentStart = 1; // Google customsearch start param (1-based)
-let lastFilter = 'all';
-
-searchBtn.addEventListener('click', ()=>doSearch(1));
-qEl.addEventListener('keydown', (e)=>{ if(e.key === 'Enter') doSearch(1); });
-voiceBtn.addEventListener('click', startVoiceCapture);
-
-function startVoiceCapture(){
-  // minimal: use Web Speech API if available
-  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-  if(!SpeechRecognition){ alert('Voice recognition not supported in this browser.'); return; }
-  const rec = new SpeechRecognition();
-  rec.lang = 'en-US';
-  rec.interimResults = false;
-  rec.maxAlternatives = 1;
-  rec.onresult = (evt) => { qEl.value = evt.results[0][0].transcript; doSearch(1); };
-  rec.onerror = ()=> alert('Voice capture error.');
-  rec.start();
-}
-
-/* Build siteSearch parameter from chosen filter */
-function buildSiteSearchParam(filter) {
-  if(filter === 'all') return null;
-  if(filter === 'curated') return curated.join(',');
-  if(categorySites[filter]) return categorySites[filter].join(',');
-  return null;
-}
-
-async function doSearch(start) {
-  const query = qEl.value.trim();
-  lastFilter = categoryEl.value;
-  currentStart = start || 1;
-
-  if(!query){
-    resultsEl.innerHTML = `<div class="muted" style="padding:18px;background:rgba(0,0,0,0.04);border-radius:8px">Please enter a search query.</div>`;
-    paginationEl.innerHTML = '';
-    return;
-  }
-
-  resultsEl.innerHTML = `<div class="muted" style="padding:14px">Searching for <strong>${escapeHtml(query)}</strong>... </div>`;
-  lastQuery = query;
-
-  // If user selected curated/sites-only filter, we'll add siteSearch param(s).
-  const siteParam = buildSiteSearchParam(lastFilter);
-  // Build the basic URL
-  let url = `https://www.googleapis.com/customsearch/v1?key=${encodeURIComponent(API_KEY)}&cx=${encodeURIComponent(CX)}&q=${encodeURIComponent(query)}&start=${currentStart}&num=${RESULTS_PER_PAGE}`;
-
-  // If specific sites, add siteSearch and restrict parameter
-  if(siteParam){
-    // Google expects one siteSearch value; if you want multiple sites you can use "site:" operator in q.
-    // We'll prepend "site:domain OR site:domain2" to the query for better control.
-    const sites = siteParam.split(',').map(s => `site:${s}`).join(' OR ');
-    url = `https://www.googleapis.com/customsearch/v1?key=${encodeURIComponent(API_KEY)}&cx=${encodeURIComponent(CX)}&q=${encodeURIComponent(sites + ' ' + query)}&start=${currentStart}&num=${RESULTS_PER_PAGE}`;
-  }
-
-  try {
-    const resp = await fetch(url);
-    if(!resp.ok){
-      const txt = await resp.text();
-      resultsEl.innerHTML = `<div style="padding:14px" class="muted">Search API error: ${resp.status} ${resp.statusText}. ${escapeHtml(txt)}</div>`;
-      paginationEl.innerHTML = '';
-      return;
-    }
-    const data = await resp.json();
-    renderResults(data);
-  } catch (err) {
-    resultsEl.innerHTML = `<div style="padding:14px" class="muted">Network error: ${escapeHtml(err.message)}</div>`;
-    paginationEl.innerHTML = '';
-  }
-}
-
-function renderResults(data){
-  if(!data || !data.items || data.items.length === 0){
-    // If Google returns no items, show "No results" with suggestions
-    resultsEl.innerHTML = `<div style="padding:16px" class="muted"><strong>No results found</strong> — try different keywords or remove filters. (${data && data.searchInformation ? `SearchTime: ${data.searchInformation.formattedSearchTime}, Total: ${data.searchInformation.totalResults || 0}` : ''})</div>`;
-    paginationEl.innerHTML = '';
-    return;
-  }
-
-  const items = data.items;
-  const parts = [];
-  for(const it of items){
-    const title = it.title || '';
-    const link = it.link || (it.formattedUrl || '#');
-    const snippet = it.snippet || '';
-    const displayLink = it.displayLink || (new URL(link)).hostname || '';
-    parts.push(`<article class="result">
-      <a class="title" href="${escapeAttr(link)}" target="_blank" rel="noopener noreferrer">${escapeHtml(title)}</a>
-      <div class="link">${escapeHtml(displayLink)}</div>
-      <p class="snippet">${escapeHtml(snippet)}</p>
-      <div class="meta"><div>Source: ${escapeHtml(displayLink)}</div><div>${escapeHtml(it.pagemap && it.pagemap.metatags ? (it.pagemap.metatags[0]['og:site_name'] || '') : '')}</div></div>
-    </article>`);
-  }
-
-  // Pagination: Google returns queries.nextPage with startIndex; we can compute
-  const totalResults = data.searchInformation && data.searchInformation.totalResults ? parseInt(data.searchInformation.totalResults) : null;
-  let paginationHTML = '';
-  if(totalResults && totalResults > RESULTS_PER_PAGE){
-    const currentPage = Math.floor((currentStart - 1) / RESULTS_PER_PAGE) + 1;
-    const totalPages = Math.min(10, Math.ceil(totalResults / RESULTS_PER_PAGE)); // limit pages shown to 10 for UI
-    const prevStart = Math.max(1, currentStart - RESULTS_PER_PAGE);
-    const nextStart = currentStart + RESULTS_PER_PAGE;
-
-    paginationHTML += `<div style="display:flex;gap:8px;align-items:center">`;
-    if(currentStart > 1){
-      paginationHTML += `<button class="btn" onclick="doSearch(${prevStart})" style="background:rgba(255,255,255,0.92);color:#013">Prev</button>`;
-    }
-    paginationHTML += `<div class="muted" style="padding:6px 10px;border-radius:8px;background:rgba(0,0,0,0.04)">Page ${currentPage} of ${totalPages}${totalResults ? ` — about ${numberWithCommas(totalResults)} results` : ''}</div>`;
-    if(nextStart <= totalPages*RESULTS_PER_PAGE && nextStart <= 100){ // Google returns max 100 results via API
-      paginationHTML += `<button class="btn" onclick="doSearch(${nextStart})" style="background:rgba(255,255,255,0.92);color:#013">Next</button>`;
-    }
-    paginationHTML += `</div>`;
-  }
-
-  resultsEl.innerHTML = parts.join('');
-  paginationEl.innerHTML = paginationHTML;
-}
-
-/* ----- small helpers ----- */
-function escapeHtml(s){ if(!s) return ''; return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
-function escapeAttr(s){ return escapeHtml(s).replace(/'/g,'&#39;'); }
-function numberWithCommas(x){ return x ? x.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",") : x; }
-
-/* quick auto-run if page opened with q param in URL */
-(function tryQueryFromURL(){
-  const params = new URLSearchParams(location.search);
-  if(params.has('q')){ qEl.value = params.get('q'); doSearch(1); }
-})();
-</script>
-
+  <script src="assets/script.js"></script>
 </body>
-</html>
+          </html>
