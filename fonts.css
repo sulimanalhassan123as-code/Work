@@ -1,0 +1,7 @@
+/* File path: Work/assets/fonts.css */
+/* Use Google Amiri for better Arabic typography; fallback to system fonts */
+@import url('https://fonts.googleapis.com/css2?family=Amiri&display=swap');
+body{font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;}
+
+/* Use Amiri for elements that might show Arabic content */
+h1,h2,h3{font-family: 'Amiri', serif;}
