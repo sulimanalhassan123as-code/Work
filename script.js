@@ -11,9 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let prophetsData = []; // To store the fetched data
 
-    // --- YOUR WHATSAPP GROUP LINK GOES HERE ---
-    // I will ask you for this link when we are ready to deploy.
-    const WHATSAPP_GROUP_URL = '#'; // Placeholder
+    // --- YOUR WHATSAPP GROUP LINK IS NOW INCLUDED ---
+    const WHATSAPP_GROUP_URL = 'https://chat.whatsapp.com/KR69AWXAxZ7JApiG2u2JiG'; 
 
     // --- Dark Mode Logic ---
     const setupDarkMode = () => {
@@ -36,16 +35,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Data Fetching and Rendering ---
     const fetchProphets = async () => {
         try {
-            // This is the URL to your raw prophets.json file on GitHub.
-            // Replace 'Your-GitHub-Username' and 'your-repository-name' with your actual info.
-            const response = await fetch('https://raw.githubusercontent.com/Your-GitHub-Username/your-repository-name/main/prophets.json');
+            // This URL is now correct and points to YOUR GitHub repository.
+            const response = await fetch('https://raw.githubusercontent.com/sulimanalhassan123as-code/Work/main/prophets.json');
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
             prophetsData = await response.json();
             renderTimeline();
         } catch (error) {
-            timelineContainer.innerHTML = '<p style="text-align:center;">Failed to load data. Please check your connection and the file path.</p>';
+            timelineContainer.innerHTML = '<p style="text-align:center;">Failed to load data. Please check your connection and the file path in script.js.</p>';
             console.error('Fetch error:', error);
         }
     };
@@ -53,7 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const renderTimeline = () => {
         timelineContainer.innerHTML = ''; // Clear loading spinner
         
-        // Group prophets by era
         const eras = [...new Set(prophetsData.map(p => p.era))];
         
         eras.forEach(era => {
@@ -123,9 +120,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Initial Setup and Event Listeners ---
     
-    // Set up the WhatsApp link
     whatsappLink.href = WHATSAPP_GROUP_URL;
-    // Set up a placeholder for the contact link
+    
     contactLink.addEventListener('click', (e) => {
         e.preventDefault();
         alert('Contact feature coming soon!');
