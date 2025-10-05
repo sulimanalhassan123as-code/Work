@@ -1,0 +1,277 @@
+/* --- Core Styles & Color Variables --- */
+:root {
+    /* Light Mode */
+    --bg-color: #FDFBF5; /* Sandy Beige */
+    --text-color: #3D352E; /* Dark Brown */
+    --primary-color: #D4AF37; /* Gold */
+    --card-bg: #FFFFFF;
+    --timeline-color: #D3D3D3; /* Light Grey */
+
+    /* Dark Mode */
+    --bg-color-dark: #1A1D24; /* Night Sky Blue */
+    --text-color-dark: #E0E7FF; /* Light Lavender */
+    --primary-color-dark: #F0E68C; /* Khaki/Gold */
+    --card-bg-dark: #2C303A;
+    --timeline-color-dark: #4A4E5A;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode {
+    background-color: var(--bg-color-dark);
+    color: var(--text-color-dark);
+}
+
+/* --- Screen Management --- */
+.screen {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.screen.active {
+    display: block;
+    opacity: 1;
+}
+
+/* --- Header Styles --- */
+header {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    position: relative;
+}
+
+header h1 {
+    font-family: 'Amiri', serif;
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin: 0;
+}
+
+body.dark-mode header h1 {
+    color: var(--primary-color-dark);
+}
+
+#dark-mode-toggle {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: none;
+    border: 2px solid var(--timeline-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.3s ease;
+}
+body.dark-mode #dark-mode-toggle {
+    border-color: var(--timeline-color-dark);
+}
+#dark-mode-toggle:hover {
+    transform: scale(1.1);
+}
+
+/* --- Timeline Styles --- */
+#timeline-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    position: relative;
+}
+
+#timeline-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 100%;
+    background-color: var(--timeline-color);
+    border-radius: 2px;
+}
+body.dark-mode #timeline-container::before {
+    background-color: var(--timeline-color-dark);
+}
+
+.era-section {
+    margin-bottom: 3rem;
+}
+
+.era-title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    background-color: var(--bg-color);
+    color: var(--primary-color);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    border: 2px solid var(--primary-color);
+    width: fit-content;
+    margin: 0 auto 2rem auto;
+    position: relative;
+    z-index: 1;
+}
+body.dark-mode .era-title {
+    background-color: var(--bg-color-dark);
+    color: var(--primary-color-dark);
+    border-color: var(--primary-color-dark);
+}
+
+.prophet-card {
+    background-color: var(--card-bg);
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid var(--timeline-color);
+}
+body.dark-mode .prophet-card {
+    background-color: var(--card-bg-dark);
+    border-color: var(--timeline-color-dark);
+    box-shadow: none;
+}
+.prophet-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+.prophet-card h2 {
+    font-family: 'Amiri', serif;
+    font-size: 2rem;
+    margin: 0 0 0.5rem 0;
+    color: var(--text-color);
+}
+body.dark-mode .prophet-card h2 {
+    color: var(--text-color-dark);
+}
+.prophet-card p {
+    margin: 0;
+    opacity: 0.8;
+}
+
+/* --- Details Screen Styles --- */
+#details-screen {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1.5rem;
+}
+
+.details-header {
+    padding: 0;
+    text-align: left;
+}
+
+#back-button {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 0.5rem 0;
+}
+body.dark-mode #back-button {
+    color: var(--text-color-dark);
+}
+
+#prophet-details-content h1 {
+    font-family: 'Amiri', serif;
+    font-size: 3rem;
+    margin: 1rem 0;
+    color: var(--primary-color);
+}
+body.dark-mode #prophet-details-content h1 {
+    color: var(--primary-color-dark);
+}
+
+.detail-section {
+    margin-bottom: 2rem;
+}
+.detail-section h3 {
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+body.dark-mode .detail-section h3 {
+    border-bottom-color: var(--primary-color-dark);
+}
+.detail-section ul {
+    padding-left: 20px;
+    list-style-type: '— ';
+}
+
+.youtube-embed {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    border-radius: 15px;
+    margin-top: 1rem;
+}
+.youtube-embed iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* --- Footer & Loading Styles --- */
+footer {
+    text-align: center;
+    padding: 2rem;
+    opacity: 0.7;
+}
+
+#contact-section a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+body.dark-mode #contact-section a {
+    color: var(--text-color-dark);
+}
+
+.loading-spinner {
+    border: 5px solid var(--timeline-color);
+    border-top: 5px solid var(--primary-color);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 5rem auto;
+}
+body.dark-mode .loading-spinner {
+    border: 5px solid var(--timeline-color-dark);
+    border-top: 5px solid var(--primary-color-dark);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* --- Responsive Design for Smaller Screens --- */
+@media (max-width: 600px) {
+    header h1 { font-size: 2rem; }
+    #timeline-container { padding: 1rem; }
+    #timeline-container::before, .era-title {
+        left: 20px; /* Moves timeline to the left */
+        transform: none;
+    }
+    .prophet-card {
+        width: calc(100% - 40px);
+        margin-left: 40px;
+    }
+      }
