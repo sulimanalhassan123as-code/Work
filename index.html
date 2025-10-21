@@ -1,51 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Prophets' Timeline</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Prophets' Timeline</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#0a0a0a" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
+  <!-- Main Timeline Screen -->
+  <div id="timeline-screen" class="screen active">
+    <header>
+      <div class="header-content">
+        <h1>The Prophets' Timeline</h1>
+        <p>A journey through the lives of the Messengers of Allah</p>
+      </div>
+      <div class="header-buttons">
+        <button id="dark-mode-toggle" title="Toggle Dark Mode">🌙</button>
+        <button id="install-btn" style="display:none;" title="Install App">⬇️ Install</button>
+      </div>
+    </header>
 
-    <!-- Main Timeline Screen -->
-    <div id="timeline-screen" class="screen active">
-        <header>
-            <div class="header-content">
-                <h1>The Prophets' Timeline</h1>
-                <p>A journey through the lives of the Messengers of Allah</p>
-            </div>
-            <button id="dark-mode-toggle" title="Toggle Dark Mode">🌙</button>
-        </header>
+    <main id="timeline-container">
+      <div class="loading-spinner"></div>
+    </main>
 
-        <main id="timeline-container">
-            <!-- Loading indicator will be shown here -->
-            <div class="loading-spinner"></div>
-        </main>
+    <footer>
+      <div id="contact-section">
+        <a href="#" id="whatsapp-link" target="_blank">Join our WhatsApp Group</a>
+        <span>&bull;</span>
+        <a href="#" id="contact-link">Contact for Assistance</a>
+      </div>
+      <p>Powered by <strong>Suleiman Alhassan</strong></p>
+    </footer>
+  </div>
 
-        <footer>
-            <div id="contact-section">
-                <a href="#" id="whatsapp-link" target="_blank">Join our WhatsApp Group</a>
-                <span>&bull;</span>
-                <a href="#" id="contact-link">Contact for Assistance</a>
-            </div>
-            <p>Developed by Suleiman Alhassan</p>
-        </footer>
-    </div>
+  <!-- Details Screen -->
+  <div id="details-screen" class="screen">
+    <header class="details-header">
+      <button id="back-button">&larr; Back to Timeline</button>
+    </header>
+    <div id="prophet-details-content"></div>
+  </div>
 
-    <!-- Details Screen (initially hidden) -->
-    <div id="details-screen" class="screen">
-        <header class="details-header">
-            <button id="back-button">&larr; Back to Timeline</button>
-        </header>
-        <div id="prophet-details-content">
-            <!-- Prophet details will be loaded here by JavaScript -->
-        </div>
-    </div>
-
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
-</html>
+                        </html>
