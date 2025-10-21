@@ -1,16 +1,16 @@
 /* --- Core Styles & Color Variables --- */
 :root {
     /* Light Mode */
-    --bg-color: #FDFBF5; /* Sandy Beige */
-    --text-color: #3D352E; /* Dark Brown */
-    --primary-color: #D4AF37; /* Gold */
+    --bg-color: #FDFBF5;
+    --text-color: #3D352E;
+    --primary-color: #D4AF37;
     --card-bg: #FFFFFF;
-    --timeline-color: #D3D3D3; /* Light Grey */
+    --timeline-color: #D3D3D3;
 
     /* Dark Mode */
-    --bg-color-dark: #1A1D24; /* Night Sky Blue */
-    --text-color-dark: #E0E7FF; /* Light Lavender */
-    --primary-color-dark: #F0E68C; /* Khaki/Gold */
+    --bg-color-dark: #1A1D24;
+    --text-color-dark: #E0E7FF;
+    --primary-color-dark: #F0E68C;
     --card-bg-dark: #2C303A;
     --timeline-color-dark: #4A4E5A;
 }
@@ -212,7 +212,7 @@ body.dark-mode .detail-section h3 {
 .youtube-embed {
     position: relative;
     width: 100%;
-    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    padding-bottom: 56.25%;
     height: 0;
     overflow: hidden;
     border-radius: 15px;
@@ -225,6 +225,65 @@ body.dark-mode .detail-section h3 {
     width: 100%;
     height: 100%;
     border: 0;
+}
+
+/* --- Install App Section --- */
+.install-app-container {
+    display: flex;
+    justify-content: center;
+    margin: 2rem auto;
+    padding: 1rem;
+}
+
+.install-card {
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: #fff;
+    padding: 2rem;
+    border-radius: 1.5rem;
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    animation: fadeInUp 0.8s ease-in-out;
+}
+
+.install-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.install-text {
+    font-size: 1rem;
+    opacity: 0.9;
+    margin-bottom: 1rem;
+}
+
+.install-button {
+    background: #FFD700;
+    color: #111;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.install-button:hover {
+    background: #ffea00;
+    transform: scale(1.05);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* --- Footer & Loading Styles --- */
@@ -262,16 +321,16 @@ body.dark-mode .loading-spinner {
     100% { transform: rotate(360deg); }
 }
 
-/* --- Responsive Design for Smaller Screens --- */
+/* --- Responsive Design --- */
 @media (max-width: 600px) {
     header h1 { font-size: 2rem; }
     #timeline-container { padding: 1rem; }
     #timeline-container::before, .era-title {
-        left: 20px; /* Moves timeline to the left */
+        left: 20px;
         transform: none;
     }
     .prophet-card {
         width: calc(100% - 40px);
         margin-left: 40px;
     }
-      }
+    }
