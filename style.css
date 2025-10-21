@@ -334,3 +334,36 @@ body.dark-mode .loading-spinner {
         margin-left: 40px;
     }
     }
+/* ----------- INSTALL BUTTON STYLE ----------- */
+.install-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 114, 255, 0.4);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.install-button:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #0072ff, #00c6ff);
+  box-shadow: 0 6px 16px rgba(0, 114, 255, 0.6);
+}
+
+.install-icon {
+  font-size: 1.2em;
+  animation: pulse 2s infinite;
+}
+
+/* subtle glowing animation */
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.2); }
+        }
