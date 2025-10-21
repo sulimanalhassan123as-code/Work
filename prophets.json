@@ -1,180 +1,127 @@
-[
-  {
-    "id": 1,
-    "name": "Adam (Adam) - AS",
-    "era": "The First Man & Prophet",
-    "bio": "Adam (AS) was the first human created by Allah from clay and given life by His command. He was placed in Paradise with his wife Hawwa (Eve) and was blessed with knowledge of all things. His story teaches about humanity's beginning, sin, repentance, and divine mercy.",
-    "events": [
-      "Creation from clay and being taught the names of all things.",
-      "The angels commanded to prostrate before Adam (AS).",
-      "Temptation by Iblis and eating from the forbidden tree.",
-      "Descent to Earth and sincere repentance accepted by Allah."
-    ],
-    "verses": [
-      "Qur'an 2:30-37",
-      "Qur'an 7:19-25"
-    ],
-    "lessons": "Adam’s story teaches that humans are honored creations of Allah, capable of error but also repentance and forgiveness.",
-    "youtubeId": "gIqIXc2_12M"
-  },
-  {
-    "id": 2,
-    "name": "Nuh (Noah) - AS",
-    "era": "Early Prophets",
-    "bio": "Nuh (AS) preached the Oneness of Allah for 950 years, calling his people to abandon idols and turn to faith. Despite their rejection, he built the Ark on Allah’s command, which saved the believers during the Great Flood.",
-    "events": [
-      "950 years of patient da’wah (preaching).",
-      "Construction of the Ark under Allah’s guidance.",
-      "The Great Flood that wiped away disbelief.",
-      "Renewal of humanity through the believers."
-    ],
-    "verses": [
-      "Qur'an 11:25-49",
-      "Qur'an 71:1-28"
-    ],
-    "lessons": "Nuh (AS) shows perseverance in faith, patience under ridicule, and total trust in Allah’s promise.",
-    "youtubeId": "0s_a_g29nI4"
-  },
-  {
-    "id": 3,
-    "name": "Ibrahim (Abraham) - AS",
-    "era": "The Age of Ibrahim",
-    "bio": "Ibrahim (AS), known as the Friend of Allah, stood against idolatry and falsehood from his youth. He faced great trials including being thrown into fire, commanded to sacrifice his son, and left a legacy of faith that shapes Islam today.",
-    "events": [
-      "Destroying the idols and confronting his people’s beliefs.",
-      "Thrown into the fire — which Allah made cool and safe.",
-      "Tested by the command to sacrifice Ismail (AS).",
-      "Rebuilding the Kaaba in Makkah with Ismail (AS)."
-    ],
-    "verses": [
-      "Qur'an 2:124-130",
-      "Qur'an 37:99-113"
-    ],
-    "lessons": "Ibrahim (AS) represents pure faith, obedience, and trust in Allah’s wisdom even during life’s hardest trials.",
-    "youtubeId": "zR_8n452-Cg"
-  },
-  {
-    "id": 4,
-    "name": "Musa (Moses) - AS",
-    "era": "The Prophets of Israel",
-    "bio": "Musa (AS) was chosen to free the Children of Israel from Pharaoh’s tyranny. He received the Torah and was blessed with many miracles. His life is a story of leadership, faith, and courage against oppression.",
-    "events": [
-      "Raised in Pharaoh’s palace and fled Egypt after an incident.",
-      "Chosen by Allah and given the miracles of the staff and shining hand.",
-      "Led the Israelites through the Red Sea by Allah’s command.",
-      "Received the Torah on Mount Sinai."
-    ],
-    "verses": [
-      "Qur'an 20:9-98",
-      "Qur'an 28:1-43"
-    ],
-    "lessons": "Musa (AS) teaches the importance of courage, truth, and patience when standing against injustice.",
-    "youtubeId": "CKy0d2-Nk-Q"
-  },
-  {
-    "id": 5,
-    "name": "Isa (Jesus) - AS",
-    "era": "The Prophets of Israel",
-    "bio": "Isa (AS), son of Maryam, was born miraculously without a father. He was a Prophet of compassion, healing, and truth who called people to worship Allah alone. He performed miracles and will return before the Day of Judgment.",
-    "events": [
-      "Spoke from the cradle defending his mother’s honor.",
-      "Healed the sick and revived the dead by Allah’s permission.",
-      "Received the Injeel and called people to Tawheed.",
-      "Was raised to Allah and will return before the Last Day."
-    ],
-    "verses": [
-      "Qur'an 3:45-59",
-      "Qur'an 19:16-36"
-    ],
-    "lessons": "Isa (AS) shows Allah’s power, mercy, and the beauty of humility and service.",
-    "youtubeId": "0I3x0k62O90"
-  },
-  {
-    "id": 6,
-    "name": "Muhammad (ﷺ)",
-    "era": "The Final Prophet",
-    "bio": "Muhammad (ﷺ) is the final Messenger of Allah, sent to guide all humanity. His message of peace, justice, and mercy transformed the world. He received the Qur’an and established the model of perfect character.",
-    "events": [
-      "First revelation in the cave of Hira.",
-      "Night Journey (Isra) and Ascension (Mi’raj).",
-      "Migration (Hijra) to Madinah and building the Muslim Ummah.",
-      "Final Sermon and completion of the message of Islam."
-    ],
-    "verses": [
-      "Qur'an 33:40",
-      "Qur'an 21:107"
-    ],
-    "lessons": "Muhammad (ﷺ) is the best example for all, embodying mercy, truth, and justice.",
-    "youtubeId": "g-t0aD0Q-Yg"
-  },
-  {
-    "id": 7,
-    "name": "Yunus (Jonah) - AS",
-    "era": "Prophets of Repentance",
-    "bio": "Yunus (AS) was sent to the people of Nineveh who initially rejected his call. After leaving them, he was swallowed by a great fish where he sincerely repented. Allah forgave him and returned him to continue his mission.",
-    "events": [
-      "Preached to the people of Nineveh.",
-      "Left in anger and was swallowed by a great fish.",
-      "Repented in the darkness of the sea: ‘La ilaha illa Anta, Subhanaka, inni kuntu minaz-zalimeen.’",
-      "Returned and led his people to faith."
-    ],
-    "verses": [
-      "Qur'an 37:139-148",
-      "Qur'an 21:87-88"
-    ],
-    "lessons": "Never lose hope in Allah’s mercy and always return to Him in repentance.",
-    "youtubeId": "Eq5Kbo7Cr1Q"
-  },
-  {
-    "id": 8,
-    "name": "Yusuf (Joseph) - AS",
-    "era": "Prophets of Patience",
-    "bio": "Yusuf (AS) was known for his beauty, patience, and unwavering faith. Betrayed by his brothers and sold into slavery, he remained steadfast until Allah raised him to power in Egypt.",
-    "events": [
-      "Thrown into a well by his jealous brothers.",
-      "Sold into slavery and falsely imprisoned.",
-      "Interpreted dreams and gained freedom.",
-      "Reunited with his family and forgave them."
-    ],
-    "verses": [
-      "Qur'an 12:1-111"
-    ],
-    "lessons": "Yusuf (AS) teaches patience, forgiveness, and how Allah’s plan always prevails in the end.",
-    "youtubeId": "9O8qlbQbE1E"
-  },
-  {
-    "id": 9,
-    "name": "Ayyub (Job) - AS",
-    "era": "Prophets of Perseverance",
-    "bio": "Ayyub (AS) was a Prophet known for his patience. He lost his wealth, children, and health but never lost faith in Allah. When tested, he remained grateful and was later restored to health and blessings.",
-    "events": [
-      "Faced severe illness and loss of family.",
-      "Remained patient and continued praising Allah.",
-      "Was healed and blessed again after his steadfastness."
-    ],
-    "verses": [
-      "Qur'an 21:83-84",
-      "Qur'an 38:41-44"
-    ],
-    "lessons": "Patience in hardship brings Allah’s mercy. Trials are not punishment but elevation for believers.",
-    "youtubeId": "Lqhtf0k0Sps"
-  },
-  {
-    "id": 10,
-    "name": "Dawud (David) - AS",
-    "era": "Kings & Prophets of Israel",
-    "bio": "Dawud (AS) was both a Prophet and King blessed with wisdom, beautiful voice, and strength. He was given the Zabur (Psalms) and ruled with justice and fairness.",
-    "events": [
-      "Defeated Goliath (Jalut) with faith and courage.",
-      "Ruled Israel with fairness and wisdom.",
-      "Received the Zabur from Allah.",
-      "Was known for fasting every other day and his beautiful recitation."
-    ],
-    "verses": [
-      "Qur'an 2:251",
-      "Qur'an 38:17-26"
-    ],
-    "lessons": "Balance between worship, leadership, and humility is the key to true success.",
-    "youtubeId": "7eRrbfCzEt8"
+document.addEventListener('DOMContentLoaded', () => {
+  const timelineScreen = document.getElementById('timeline-screen');
+  const detailsScreen = document.getElementById('details-screen');
+  const timelineContainer = document.getElementById('timeline-container');
+  const prophetDetailsContent = document.getElementById('prophet-details-content');
+  const backButton = document.getElementById('back-button');
+  const darkModeToggle = document.getElementById('dark-mode-toggle');
+  const whatsappLink = document.getElementById('whatsapp-link');
+  const contactLink = document.getElementById('contact-link');
+  const installBtn = document.getElementById('install-btn');
+  let deferredPrompt;
+  let prophetsData = [];
+
+  const WHATSAPP_GROUP_URL = 'https://chat.whatsapp.com/KR69AWXAxZ7JApiG2u2JiG';
+
+  // --- DARK MODE ---
+  const setupDarkMode = () => {
+    const saved = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    if (saved === 'dark' || (!saved && prefersDark)) {
+      document.body.classList.add('dark-mode');
+      darkModeToggle.textContent = '☀️';
+    }
+
+    darkModeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      const dark = document.body.classList.contains('dark-mode');
+      localStorage.setItem('theme', dark ? 'dark' : 'light');
+      darkModeToggle.textContent = dark ? '☀️' : '🌙';
+    });
+  };
+
+  // --- FETCH PROPHETS ---
+  const fetchProphets = async () => {
+    try {
+      const res = await fetch('https://raw.githubusercontent.com/sulimanalhassan123as-code/Work/main/prophets.json');
+      if (!res.ok) throw new Error('Network issue');
+      prophetsData = await res.json();
+      renderTimeline();
+    } catch (e) {
+      timelineContainer.innerHTML = `<p style="text-align:center;">Failed to load data. Please check connection.</p>`;
+      console.error(e);
+    }
+  };
+
+  const renderTimeline = () => {
+    timelineContainer.innerHTML = '';
+    const eras = [...new Set(prophetsData.map(p => p.era))];
+
+    eras.forEach(era => {
+      const eraDiv = document.createElement('div');
+      eraDiv.className = 'era-section';
+      const eraTitle = document.createElement('div');
+      eraTitle.className = 'era-title';
+      eraTitle.textContent = era;
+      eraDiv.appendChild(eraTitle);
+
+      prophetsData.filter(p => p.era === era).forEach(prophet => {
+        const card = document.createElement('div');
+        card.className = 'prophet-card';
+        card.dataset.id = prophet.id;
+        card.innerHTML = `<h2>${prophet.name}</h2><p>${prophet.bio.substring(0, 100)}...</p>`;
+        card.addEventListener('click', () => showDetails(prophet.id));
+        eraDiv.appendChild(card);
+      });
+      timelineContainer.appendChild(eraDiv);
+    });
+  };
+
+  const showDetails = id => {
+    const prophet = prophetsData.find(p => p.id === id);
+    if (!prophet) return;
+
+    prophetDetailsContent.innerHTML = `
+      <h1>${prophet.name}</h1>
+      <div class="detail-section"><h3>Biography</h3><p>${prophet.bio}</p></div>
+      <div class="detail-section"><h3>Key Events & Miracles</h3><ul>${prophet.events.map(e => `<li>${e}</li>`).join('')}</ul></div>
+      <div class="detail-section"><h3>Mentions in the Qur'an</h3><p>${prophet.verses.join(', ')}</p></div>
+      <div class="detail-section"><h3>Lessons From Their Life</h3><p>${prophet.lessons}</p></div>
+      <div class="detail-section"><h3>Learn More (Video)</h3>
+        <div class="youtube-embed">
+          <iframe src="https://www.youtube.com/embed/${prophet.youtubeId}" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+    `;
+    timelineScreen.classList.remove('active');
+    detailsScreen.classList.add('active');
+    window.scrollTo(0, 0);
+  };
+
+  const showTimeline = () => {
+    detailsScreen.classList.remove('active');
+    timelineScreen.classList.add('active');
+  };
+
+  backButton.addEventListener('click', showTimeline);
+  whatsappLink.href = WHATSAPP_GROUP_URL;
+  contactLink.addEventListener('click', e => {
+    e.preventDefault();
+    alert('Contact feature coming soon!');
+  });
+
+  // --- PWA INSTALL LOGIC ---
+  window.addEventListener('beforeinstallprompt', e => {
+    e.preventDefault();
+    deferredPrompt = e;
+    installBtn.style.display = 'inline-block';
+  });
+
+  installBtn.addEventListener('click', async () => {
+    installBtn.style.display = 'none';
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      deferredPrompt = null;
+      console.log('User choice:', outcome);
+    }
+  });
+
+  setupDarkMode();
+  fetchProphets();
+
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js').then(() => console.log('SW registered'));
   }
-    ]
+});
