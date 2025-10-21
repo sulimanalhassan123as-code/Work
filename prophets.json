@@ -1,143 +1,174 @@
 [
   {
     "id": 1,
-    "name": "Adam (Adam) - AS",
+    "name": "Adam (A.S.)",
     "era": "The First Man & Prophet",
-    "bio": "Adam (AS) was the first human being, created by Allah from clay. He lived in the garden of Jannah with his wife, Hawwa (Eve), before being sent to Earth as the first Prophet and custodian of the planet.",
+    "bio": "Adam (A.S.) was the first human being, created by Allah from clay. He lived in the Garden of Jannah with his wife, Hawwa (Eve), before being sent to Earth as the first Prophet and custodian of the planet.",
     "events": [
       "Creation from clay and the prostration of the angels.",
       "Temptation by Iblis (Satan) and eating from the forbidden tree.",
       "Sincere repentance to Allah and being sent to Earth."
     ],
-    "verses": ["Qur'an 2:30-37", "Qur'an 7:19-25"],
+    "verses": [
+      "Qur'an 2:30-37",
+      "Qur'an 7:19-25"
+    ],
     "lessons": "The nature of repentance, the importance of forgiveness, and humanity's role as stewards (Khalifa) of the Earth.",
-    "youtubeId": "gIqIXc2_12M"
+    "youtubeId": "RqHf7RnVRN0"
   },
   {
     "id": 2,
-    "name": "Nuh (Noah) - AS",
+    "name": "Nuh (Noah) - A.S.",
     "era": "Early Prophets",
-    "bio": "Nuh (AS) was sent to his people after they had fallen into idolatry. He preached the Oneness of Allah for 950 years with incredible patience.",
+    "bio": "Nuh (A.S.) was a Prophet sent to his people after they had fallen into idolatry. He preached the message of Tawhid (the Oneness of Allah) for 950 years with patience, but only a few believed.",
     "events": [
       "Preaching the message of Tawhid for 950 years.",
-      "Building the great Ark under Allah's command.",
-      "The Great Flood that saved the believers."
+      "Building the great Ark under Allah’s command.",
+      "The Great Flood that saved the believers and cleansed the Earth."
     ],
-    "verses": ["Qur'an 71:1-28", "Qur'an 11:25-49"],
-    "lessons": "Unwavering patience, perseverance, and trust in Allah's plan.",
-    "youtubeId": "0s_a_g29nI4"
+    "verses": [
+      "Qur'an 71:1-28",
+      "Qur'an 11:25-49"
+    ],
+    "lessons": "Unwavering patience and absolute trust in Allah’s plan.",
+    "youtubeId": "aNkSgFyP8AU"
   },
   {
     "id": 3,
-    "name": "Hud (Hud) - AS",
-    "era": "The People of 'Ad",
-    "bio": "Hud (AS) was sent to the people of 'Ad who were powerful and arrogant. They refused to worship Allah alone.",
+    "name": "Ibrahim (Abraham) - A.S.",
+    "era": "The Age of Ibrahim",
+    "bio": "Ibrahim (A.S.) is known as Khalil-ullah (the Friend of Allah). He stood against idolatry, debated his people and the tyrant king, and showed complete submission to Allah.",
     "events": [
-      "Preaching Tawhid to the people of 'Ad.",
-      "Warning them of Allah’s punishment.",
-      "The great wind that destroyed the disbelievers."
+      "Destroying the idols of his people.",
+      "Being thrown into the fire which Allah made cool and safe.",
+      "Willingness to sacrifice his son Ismail (A.S.) as a test of faith.",
+      "Rebuilding the Kaaba in Makkah with his son Ismail (A.S.)."
     ],
-    "verses": ["Qur'an 11:50-60"],
-    "lessons": "Humility before Allah and the danger of pride and disobedience.",
-    "youtubeId": "ak6PzQTiRJo"
+    "verses": [
+      "Qur'an 2:124-130",
+      "Qur'an 37:99-113"
+    ],
+    "lessons": "The meaning of true submission, courage, and the legacy of Tawhid.",
+    "youtubeId": "v_KgFBrpx4o"
   },
   {
     "id": 4,
-    "name": "Salih (Salih) - AS",
-    "era": "The People of Thamud",
-    "bio": "Salih (AS) was sent to Thamud. He called them to worship Allah alone, but they demanded a miracle.",
+    "name": "Musa (Moses) - A.S.",
+    "era": "The Prophets of Israel",
+    "bio": "Musa (A.S.) was sent to free the Children of Israel from Pharaoh’s tyranny. He performed miracles by Allah’s permission and was given the Torah.",
     "events": [
-      "The miracle of the she-camel sent by Allah.",
-      "The people’s rejection and killing of the camel.",
-      "Allah’s punishment that destroyed Thamud."
+      "Confrontation with Pharaoh and his magicians.",
+      "The nine great signs (miracles) sent to Pharaoh.",
+      "Parting of the Red Sea.",
+      "Receiving the Torah on Mount Tur."
     ],
-    "verses": ["Qur'an 7:73-79", "Qur'an 11:61-68"],
-    "lessons": "Respect Allah’s signs and never reject truth after clear evidence.",
-    "youtubeId": "yX8bcLhm3i8"
+    "verses": [
+      "Qur'an 20:9-98",
+      "Qur'an 28:1-43"
+    ],
+    "lessons": "Courage in the face of tyranny and the importance of divine guidance.",
+    "youtubeId": "B71IqmIwhbE"
   },
   {
     "id": 5,
-    "name": "Ibrahim (Abraham) - AS",
-    "era": "The Age of Ibrahim",
-    "bio": "Ibrahim (AS) stood against idolatry and falsehood. Known as 'Khalilullah' (Friend of Allah).",
+    "name": "Isa (Jesus) - A.S.",
+    "era": "The Prophets of Israel",
+    "bio": "Isa (A.S.), the son of Maryam, was born miraculously and sent to guide the Children of Israel. He performed miracles by Allah’s will and will return before the Day of Judgment.",
     "events": [
-      "Destroyed idols of his people.",
-      "Thrown into fire which became cool and safe.",
-      "Willing to sacrifice his son Ismail.",
-      "Rebuilt the Kaaba in Makkah."
+      "Miraculous birth and speaking from the cradle.",
+      "Healing the sick and reviving the dead.",
+      "Being raised to Allah, not crucified.",
+      "His return before the Day of Judgment."
     ],
-    "verses": ["Qur'an 2:124-130", "Qur'an 37:99-113"],
-    "lessons": "True submission to Allah, courage, and legacy of Tawhid.",
-    "youtubeId": "zR_8n452-Cg"
+    "verses": [
+      "Qur'an 3:45-59",
+      "Qur'an 19:16-36"
+    ],
+    "lessons": "Faith in Allah’s power and the virtue of purity.",
+    "youtubeId": "eq1mTa-nZD8"
   },
   {
     "id": 6,
-    "name": "Yusuf (Joseph) - AS",
-    "era": "The Prophets of Israel",
-    "bio": "Yusuf (AS) was known for his beauty, patience, and wisdom. His life is a story of betrayal, patience, and victory.",
+    "name": "Hud - A.S.",
+    "era": "Prophets of Aad",
+    "bio": "Hud (A.S.) was sent to the people of Aad, a proud and powerful nation. He called them to worship Allah alone and warned them of punishment for their arrogance.",
     "events": [
-      "Thrown into a well by his brothers.",
-      "Sold into slavery and falsely imprisoned.",
-      "Became a leader in Egypt through Allah’s mercy."
+      "Calling the people of Aad to Tawhid.",
+      "Their rejection and arrogance.",
+      "The fierce wind that destroyed them."
     ],
-    "verses": ["Qur'an 12:1-111"],
-    "lessons": "Patience through hardship and forgiveness of others.",
-    "youtubeId": "LZpT0Zxx4FY"
+    "verses": [
+      "Qur'an 11:50-60"
+    ],
+    "lessons": "The danger of arrogance and rejecting truth.",
+    "youtubeId": "9LNtmNXD5bs"
   },
   {
     "id": 7,
-    "name": "Musa (Moses) - AS",
-    "era": "The Prophets of Israel",
-    "bio": "Musa (AS) freed the Children of Israel from Pharaoh’s tyranny. He was given the Torah and performed many miracles.",
+    "name": "Salih - A.S.",
+    "era": "Prophets of Thamud",
+    "bio": "Salih (A.S.) was sent to the people of Thamud. He called them to worship Allah alone, but they demanded a miracle — the she-camel — which they later killed.",
     "events": [
-      "Confronted Pharaoh and his magicians.",
-      "Parted the Red Sea by Allah’s permission.",
-      "Received the Ten Commandments on Mount Tur."
+      "Calling the people to Tawhid.",
+      "The miracle of the she-camel.",
+      "The destruction of Thamud after killing the camel."
     ],
-    "verses": ["Qur'an 20:9-98", "Qur'an 28:1-43"],
-    "lessons": "Courage against oppression and obedience to Allah.",
-    "youtubeId": "CKy0d2-Nk-Q"
+    "verses": [
+      "Qur'an 7:73-79",
+      "Qur'an 11:61-68"
+    ],
+    "lessons": "Respect for Allah’s signs and messengers.",
+    "youtubeId": "bxwftTIW2oY"
   },
   {
     "id": 8,
-    "name": "Dawud (David) - AS",
-    "era": "The Kingdom of Israel",
-    "bio": "Dawud (AS) was both a Prophet and King of Israel. He was blessed with wisdom, strength, and a beautiful voice.",
+    "name": "Yusuf (Joseph) - A.S.",
+    "era": "Prophets of Israel",
+    "bio": "Yusuf (A.S.) was known for his beauty, patience, and wisdom. He was betrayed by his brothers, imprisoned unjustly, and later became a ruler in Egypt.",
     "events": [
-      "Defeated Jalut (Goliath).",
-      "Ruled Israel with justice and fairness.",
-      "Received the Zabur (Psalms)."
+      "Thrown into a well by his brothers.",
+      "Imprisoned after false accusations.",
+      "Interpreting dreams and becoming a ruler.",
+      "Reuniting with his family in Egypt."
     ],
-    "verses": ["Qur'an 38:17-26"],
-    "lessons": "Justice, humility, and using power for good.",
-    "youtubeId": "3h9oY8zD3eg"
+    "verses": [
+      "Qur'an 12:1-101"
+    ],
+    "lessons": "Patience, forgiveness, and reliance on Allah in hardship.",
+    "youtubeId": "7niuq5JKHdw"
   },
   {
     "id": 9,
-    "name": "Isa (Jesus) - AS",
-    "era": "The Prophets of Israel",
-    "bio": "Isa (AS) is the son of Maryam, born without a father by Allah’s command. He performed miracles and will return before Judgment Day.",
+    "name": "Dawud (David) - A.S.",
+    "era": "Prophets of Israel",
+    "bio": "Dawud (A.S.) was a Prophet and King known for his wisdom, bravery, and beautiful recitation of the Zabur (Psalms).",
     "events": [
-      "Born miraculously and spoke from the cradle.",
-      "Healed the sick and raised the dead by Allah’s permission.",
-      "Was raised up by Allah and will return again."
+      "Defeating Jalut (Goliath).",
+      "Being made King of Israel.",
+      "Receiving the Zabur."
     ],
-    "verses": ["Qur'an 3:45-59", "Qur'an 19:16-36"],
-    "lessons": "Purity, humility, and belief in Allah’s power.",
-    "youtubeId": "0I3x0k62O90"
+    "verses": [
+      "Qur'an 38:17-26"
+    ],
+    "lessons": "Justice, humility, and gratitude to Allah.",
+    "youtubeId": "OTDxgNsffOQ"
   },
   {
     "id": 10,
     "name": "Muhammad (ﷺ)",
     "era": "The Final Prophet",
-    "bio": "Muhammad (ﷺ) is the final Messenger to all humanity. He received the Qur’an and completed Allah’s message.",
+    "bio": "Muhammad (ﷺ) is the final Messenger of Allah, sent to all humanity with the message of Islam. He brought the Qur’an, the final revelation.",
     "events": [
-      "First revelation in Cave Hira.",
-      "Isra and Mi’raj (Night Journey).",
-      "Migration to Madinah and final sermon."
+      "Receiving the first revelation in the cave of Hira.",
+      "The Night Journey and Ascension (Mi'raj).",
+      "The Hijrah to Madinah.",
+      "The Farewell Pilgrimage and completion of the message."
     ],
-    "verses": ["Qur'an 33:40", "Qur'an 21:107"],
-    "lessons": "Mercy, compassion, and perfect character for mankind.",
-    "youtubeId": "g-t0aD0Q-Yg"
+    "verses": [
+      "Qur'an 33:40",
+      "Qur'an 21:107"
+    ],
+    "lessons": "Mercy, compassion, and perfect character for all mankind.",
+    "youtubeId": "DdWxCVYAOCk"
   }
     ]
