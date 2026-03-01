@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="detail-section"><h3>Lessons From Their Life</h3><p>${prophet.lessons}</p></div>
       <div class="detail-section"><h3>Learn More (Video)</h3>
         <div class="youtube-embed">
-          <iframe src="https://www.youtube.com/embed/${prophet.youtubeId}" frameborder="0" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/${prophet.youtubeId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
       </div>
     `;
