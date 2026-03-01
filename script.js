@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- FETCH PROPHETS ---
   const fetchProphets = async () => {
     try {
-      const res = await fetch('https://raw.githubusercontent.com/sulimanalhassan123as-code/Work/main/prophets.json');
+      const res = await fetch('./prophets.json');
       if (!res.ok) throw new Error('Network issue');
       prophetsData = await res.json();
       renderTimeline();
