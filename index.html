@@ -2,53 +2,93 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>The Prophets' Timeline</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#0a0a0a" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
-  <!-- Main Timeline Screen -->
-  <div id="timeline-screen" class="screen active">
-    <header>
-      <div class="header-content">
-        <h1>The Prophets' Timeline</h1>
-        <p>A journey through the lives of the Messengers of Allah</p>
+
+  <header class="app-header">
+      <div class="logo-container">
+          <span class="logo-icon">۞</span>
+          <h1>Prophets' Timeline</h1>
       </div>
       <div class="header-buttons">
-  <button id="dark-mode-toggle" title="Toggle Dark Mode">🌙</button>
-  <button id="install-btn" style="display:none;" class="install-button" title="Install App">
-    <span class="install-icon">📱</span> Install App
-  </button>
-    </div>
-    </header>
-
-    <main id="timeline-container">
-      <div class="loading-spinner"></div>
-    </main>
-
-    <footer>
-      <div id="contact-section">
-        <a href="#" id="whatsapp-link" target="_blank">Join our WhatsApp Group</a>
-        <span>&bull;</span>
-        <a href="#" id="contact-link">Contact for Assistance</a>
+        <button id="dark-mode-toggle" title="Toggle Dark Mode">🌙</button>
+        <button id="install-btn" style="display:none;" class="install-button" title="Install App">
+          <span class="install-icon">📱</span> Install
+        </button>
       </div>
-      <p>Powered by <strong>Suleiman Alhassan</strong></p>
-    </footer>
-  </div>
+  </header>
 
-  <!-- Details Screen -->
+
+  <main id="app-content">
+
+    <section id="timeline-page" class="app-page active">
+       <div class="search-container">
+        <div class="search-wrapper">
+            <span class="material-icons-round search-icon">search</span>
+            <input type="text" id="search-bar" placeholder="Search Prophets...">
+        </div>
+      </div>
+      
+      <div id="timeline-container">
+        <div class="loading-spinner"></div>
+      </div>
+    </section>
+
+
+    <section id="zikr-page" class="app-page">
+      <div class="placeholder-content">
+        <span class="material-icons-round" style="font-size: 4rem; color: var(--primary-color);">all_inclusive</span>
+        <h2>Zikr & Du'a</h2>
+        <p>Your digital Tasbih counter is coming soon in the next step!</p>
+      </div>
+    </section>
+
+
+    <section id="ramadan-page" class="app-page">
+        <div class="placeholder-content">
+            <span class="material-icons-round" style="font-size: 4rem; color: var(--primary-color);">nights_stay</span>
+            <h2>Ramadan Daily</h2>
+            <p>Daily lessons and inspirations coming soon!</p>
+          </div>
+    </section>
+
+  </main>
+
+
   <div id="details-screen" class="screen">
     <header class="details-header">
-      <button id="back-button">&larr; Back to Timeline</button>
+      <button id="back-button">
+        <span class="material-icons-round">arrow_back_ios</span> Back
+      </button>
     </header>
     <div id="prophet-details-content"></div>
   </div>
 
+
+  <nav class="bottom-nav">
+    <a href="#" class="nav-item active" data-target="timeline-page">
+      <span class="material-icons-round">history_edu</span>
+      <span class="nav-text">Timeline</span>
+    </a>
+    <a href="#" class="nav-item" data-target="zikr-page">
+      <span class="material-icons-round">fingerprint</span>
+      <span class="nav-text">Zikr</span>
+    </a>
+    <a href="#" class="nav-item" data-target="ramadan-page">
+      <span class="material-icons-round">volunteer_activism</span>
+      <span class="nav-text">Ramadan</span>
+    </a>
+  </nav>
+
   <script src="script.js"></script>
 </body>
-                        </html>
+            </html>
