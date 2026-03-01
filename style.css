@@ -1,35 +1,31 @@
-/* --- Core Variables & Premium Theme --- */
+/* Core Variables & Premium Theme */
 :root {
-    /* Light Mode - Premium Gold & Cream */
-    --bg-color: #F9F6F0; /* Slightly warmer cream background */
-    --text-color: #2D2A26; /* Softer black */
-    --primary-color: #CFA733; /* Richer Gold */
-    --secondary-color: #204F45; /* Deep Islamic Green accent */
+    --bg-color: #F9F6F0;
+    --text-color: #2D2A26;
+    --primary-color: #CFA733;
+    --secondary-color: #204F45;
     --card-bg: #FFFFFF;
     --timeline-color: #E0D8C8;
-    --glass-bg: rgba(255, 255, 255, 0.85); /* For frosted glass effect */
+    --glass-bg: rgba(255, 255, 255, 0.85);
     --glass-border: rgba(255, 255, 255, 0.9);
     --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
     --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
 
-    /* Dark Mode - Deep Night & Gold Glow */
-    --bg-color-dark: #121418; /* Deeper, richer black */
-    --text-color-dark: #E8E6E3; /* Soft off-white */
-    --primary-color-dark: #D4AF37; /* Classic Gold */
-    --secondary-color-dark: #4E8C7D; /* Muted Teal/Green */
+    --bg-color-dark: #121418;
+    --text-color-dark: #E8E6E3;
+    --primary-color-dark: #D4AF37;
+    --secondary-color-dark: #4E8C7D;
     --card-bg-dark: #1E222A;
     --timeline-color-dark: #2C303A;
-    --glass-bg-dark: rgba(30, 34, 42, 0.85); /* Dark frosted glass */
+    --glass-bg-dark: rgba(30, 34, 42, 0.85);
     --glass-border-dark: rgba(255, 255, 255, 0.1);
     --shadow-sm-dark: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
     --shadow-md-dark: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
 
-    /* Dimensions */
     --bottom-nav-height: 65px;
     --header-height: 70px;
 }
 
-/* --- Global Reset & Typography --- */
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 body {
     font-family: 'Poppins', sans-serif;
@@ -37,7 +33,6 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     transition: background-color 0.3s ease, color 0.3s ease;
-    /* Important for bottom nav */
     padding-bottom: var(--bottom-nav-height); 
     padding-top: var(--header-height);
     overflow-x: hidden;
@@ -45,248 +40,162 @@ body {
 body.dark-mode { background-color: var(--bg-color-dark); color: var(--text-color-dark); }
 h1, h2, h3 { font-family: 'Amiri', serif; font-weight: 700; }
 
-/* --- 1. APP HEADER & SAFE LOGO --- */
+/* 1. APP HEADER */
 .app-header {
-    position: fixed;
-    top: 0; left: 0; right: 0;
+    position: fixed; top: 0; left: 0; right: 0;
     height: var(--header-height);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: flex; justify-content: space-between; align-items: center;
     padding: 0 1.5rem;
-    /* Premium Glass Effect */
-    background: var(--glass-bg);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-    z-index: 100;
+    background: var(--glass-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0,0,0,0.05); z-index: 100;
 }
-body.dark-mode .app-header {
-    background: var(--glass-bg-dark);
-    border-bottom: 1px solid var(--glass-border-dark);
-}
-
+body.dark-mode .app-header { background: var(--glass-bg-dark); border-bottom: 1px solid var(--glass-border-dark); }
 .logo-container { display: flex; align-items: center; gap: 10px; }
-/* The Safe CSS Logo Icon */
-.logo-icon {
-    font-size: 1.8rem;
-    color: var(--primary-color);
-    /* Subtle glow animation */
-    animation: glow 3s ease-in-out infinite alternate;
-}
+.logo-icon { font-size: 1.8rem; color: var(--primary-color); animation: glow 3s ease-in-out infinite alternate; }
 @keyframes glow { from { text-shadow: 0 0 2px var(--primary-color); } to { text-shadow: 0 0 8px var(--primary-color); }}
-
-.app-header h1 {
-    font-size: 1.3rem;
-    margin: 0;
-    color: var(--primary-color);
-    white-space: nowrap;
-}
+.app-header h1 { font-size: 1.3rem; margin: 0; color: var(--primary-color); white-space: nowrap; }
 body.dark-mode .app-header h1 { color: var(--primary-color-dark); }
-
-/*Header Buttons*/
 .header-buttons { display: flex; align-items: center; gap: 10px; }
-#dark-mode-toggle {
-    background: none; border: none;
-    font-size: 1.4rem; cursor: pointer; padding: 5px;
-    color: var(--text-color);
-    transition: transform 0.2s ease;
-}
+#dark-mode-toggle { background: none; border: none; font-size: 1.4rem; cursor: pointer; padding: 5px; color: var(--text-color); transition: transform 0.2s ease; }
 body.dark-mode #dark-mode-toggle { color: var(--primary-color-dark); }
 #dark-mode-toggle:active { transform: scale(0.9); }
 
-
-/* --- 2. MAIN CONTENT & PAGE STRUCTURE --- */
-#app-content {
-    min-height: calc(100vh - var(--header-height) - var(--bottom-nav-height));
-}
-
-/* This hides pages that aren't active */
-.app-page {
-    display: none;
-    padding: 1.5rem 1rem;
-    animation: fadeIn 0.3s ease;
-}
-/* This shows the active page */
+/* 2. MAIN CONTENT & PAGES */
+#app-content { min-height: calc(100vh - var(--header-height) - var(--bottom-nav-height)); }
+.app-page { display: none; padding: 1.5rem 1rem; animation: fadeIn 0.3s ease; }
 .app-page.active { display: block; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); }}
 
-/* Placeholder content styles */
-.placeholder-content {
-    text-align: center;
-    padding: 3rem 1rem;
-    opacity: 0.7;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-}
-
-
-/* --- 3. MODERN SEARCH BAR --- */
+/* 3. SEARCH BAR */
 .search-container { margin-bottom: 1.5rem; padding: 0 0.5rem; }
 .search-wrapper {
-    position: relative;
-    display: flex; align-items: center;
-    background: var(--card-bg);
-    border-radius: 12px;
-    padding: 2px 15px;
-    box-shadow: var(--shadow-sm);
-    border: 1px solid var(--timeline-color);
+    position: relative; display: flex; align-items: center;
+    background: var(--card-bg); border-radius: 12px; padding: 2px 15px;
+    box-shadow: var(--shadow-sm); border: 1px solid var(--timeline-color);
 }
-body.dark-mode .search-wrapper {
-    background: var(--card-bg-dark);
-    border-color: var(--timeline-color-dark);
-    box-shadow: var(--shadow-sm-dark);
-}
+body.dark-mode .search-wrapper { background: var(--card-bg-dark); border-color: var(--timeline-color-dark); box-shadow: var(--shadow-sm-dark); }
 .search-icon { color: var(--primary-color); margin-right: 10px; font-size: 1.2rem; }
-#search-bar {
-    border: none; background: none; outline: none;
-    padding: 12px 0; width: 100%;
-    font-family: 'Poppins', sans-serif; font-size: 1rem;
-    color: var(--text-color);
-}
+#search-bar { border: none; background: none; outline: none; padding: 12px 0; width: 100%; font-family: 'Poppins', sans-serif; font-size: 1rem; color: var(--text-color); }
 body.dark-mode #search-bar { color: var(--text-color-dark); }
 
-
-/* --- 4. TIMELINE & CARDS (Redesigned) --- */
+/* 4. TIMELINE CARDS */
 #timeline-container { position: relative; max-width: 800px; margin: 0 auto; }
-/* The center line */
 #timeline-container::before {
-    content: ''; position: absolute; top: 0; left: 20px; /* Left-aligned for mobile */
+    content: ''; position: absolute; top: 0; left: 20px;
     width: 3px; height: 100%;
     background: linear-gradient(to bottom, var(--primary-color), var(--timeline-color) 80%, transparent);
     border-radius: 2px; opacity: 0.5;
 }
-body.dark-mode #timeline-container::before {
-    background: linear-gradient(to bottom, var(--primary-color-dark), var(--timeline-color-dark) 80%, transparent);
-}
-
+body.dark-mode #timeline-container::before { background: linear-gradient(to bottom, var(--primary-color-dark), var(--timeline-color-dark) 80%, transparent); }
 .era-section { margin-bottom: 2.5rem; position: relative; }
 .era-title {
     display: inline-block; margin-left: 40px; margin-bottom: 1rem;
-    font-weight: 600; font-size: 0.95rem;
-    color: var(--secondary-color);
+    font-weight: 600; font-size: 0.95rem; color: var(--secondary-color);
     text-transform: uppercase; letter-spacing: 1px;
 }
 body.dark-mode .era-title { color: var(--secondary-color-dark); }
-
-/* Premium Glass-Effect Cards */
 .prophet-card {
-    position: relative;
-    margin-left: 40px; /* Space for timeline */
-    margin-bottom: 1.5rem;
-    padding: 1.2rem;
-    border-radius: 16px;
-    background: var(--card-bg);
-    border: 1px solid var(--timeline-color);
-    box-shadow: var(--shadow-sm);
-    cursor: pointer;
-    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
-    /* Subtle pattern overlay for premium feel (Optional) */
-    background-image: radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.03) 0%, transparent 20%);
+    position: relative; margin-left: 40px; margin-bottom: 1.5rem; padding: 1.2rem;
+    border-radius: 16px; background: var(--card-bg); border: 1px solid var(--timeline-color);
+    box-shadow: var(--shadow-sm); cursor: pointer; transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
-body.dark-mode .prophet-card {
-    background: var(--card-bg-dark);
-    border-color: var(--timeline-color-dark);
-    box-shadow: var(--shadow-sm-dark);
-}
-/* Little dot on the timeline */
+body.dark-mode .prophet-card { background: var(--card-bg-dark); border-color: var(--timeline-color-dark); box-shadow: var(--shadow-sm-dark); }
 .prophet-card::before {
     content: ''; position: absolute; top: 20px; left: -26px;
-    width: 12px; height: 12px;
-    background: var(--primary-color);
-    border: 3px solid var(--bg-color);
-    border-radius: 50%;
-    box-shadow: 0 0 0 2px var(--primary-color);
-    transition: background-color 0.3s ease, border-color 0.3s ease;
+    width: 12px; height: 12px; background: var(--primary-color);
+    border: 3px solid var(--bg-color); border-radius: 50%;
+    box-shadow: 0 0 0 2px var(--primary-color); transition: background-color 0.3s ease, border-color 0.3s ease;
 }
-body.dark-mode .prophet-card::before {
-    background: var(--primary-color-dark);
-    border-color: var(--bg-color-dark);
-    box-shadow: 0 0 0 2px var(--primary-color-dark);
-}
-
+body.dark-mode .prophet-card::before { background: var(--primary-color-dark); border-color: var(--bg-color-dark); box-shadow: 0 0 0 2px var(--primary-color-dark); }
 .prophet-card:active { transform: scale(0.98); }
 .prophet-card h2 { font-size: 1.5rem; margin: 0 0 0.5rem 0; color: var(--text-color); }
 body.dark-mode .prophet-card h2 { color: var(--text-color-dark); }
 .prophet-card p { margin: 0; font-size: 0.9rem; opacity: 0.8; line-height: 1.5; }
 
-
-/* --- 5. DETAILS SCREEN OVERLAY --- */
+/* 5. DETAILS SCREEN OVERLAY */
 .screen {
-    display: none; position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: var(--bg-color); z-index: 200; /* Above header */
-    overflow-y: auto; padding: 1rem;
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--bg-color); z-index: 200; overflow-y: auto; padding: 1rem;
     animation: slideUp 0.3s ease-in-out;
 }
 body.dark-mode .screen { background: var(--bg-color-dark); }
 .screen.active { display: block; }
 @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); }}
-
 .details-header { padding-bottom: 1rem; }
-#back-button {
-    background: none; border: none;
-    display: flex; align-items: center; gap: 5px;
-    font-size: 1rem; font-weight: 600; color: var(--text-color);
-    cursor: pointer; padding: 0.5rem 0;
-}
+#back-button { background: none; border: none; display: flex; align-items: center; gap: 5px; font-size: 1rem; font-weight: 600; color: var(--text-color); cursor: pointer; padding: 0.5rem 0; }
 body.dark-mode #back-button { color: var(--text-color-dark); }
 #prophet-details-content h1 { font-size: 2.5rem; color: var(--primary-color); margin: 0.5rem 0 1.5rem 0; }
 body.dark-mode #prophet-details-content h1 { color: var(--primary-color-dark); }
-
 .detail-section { margin-bottom: 2rem; background: var(--card-bg); padding: 1.5rem; border-radius: 12px; box-shadow: var(--shadow-sm); }
 body.dark-mode .detail-section { background: var(--card-bg-dark); box-shadow: var(--shadow-sm-dark); }
 .detail-section h3 { color: var(--primary-color); margin-top: 0; }
 body.dark-mode .detail-section h3 { color: var(--primary-color-dark); }
 .detail-section ul { padding-left: 20px; line-height: 1.6; }
-.youtube-embed { border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-md); }
+.youtube-embed { border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-md); position: relative; width: 100%; padding-bottom: 56.25%; height: 0; }
+.youtube-embed iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
-
-/* --- 6. BOTTOM NAVIGATION BAR (The Star Show) --- */
+/* 6. BOTTOM NAVIGATION BAR */
 .bottom-nav {
-    position: fixed; bottom: 0; left: 0; right: 0;
-    height: var(--bottom-nav-height);
-    background: var(--card-bg);
+    position: fixed; bottom: 0; left: 0; right: 0; height: var(--bottom-nav-height);
+    background: var(--glass-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
     display: flex; justify-content: space-around; align-items: center;
-    box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
-    z-index: 150;
-    /* Glass effect */
-    background: var(--glass-bg);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-top: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.05); border-top: 1px solid rgba(0,0,0,0.05); z-index: 150;
 }
-body.dark-mode .bottom-nav {
-    background: var(--glass-bg-dark);
-    box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
-    border-top: 1px solid var(--glass-border-dark);
-}
-
-.nav-item {
-    display: flex; flex-direction: column; align-items: center;
-    text-decoration: none; color: #888;
-    padding: 5px; transition: all 0.2s ease;
-}
+body.dark-mode .bottom-nav { background: var(--glass-bg-dark); box-shadow: 0 -2px 10px rgba(0,0,0,0.2); border-top: 1px solid var(--glass-border-dark); }
+.nav-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #888; padding: 5px; transition: all 0.2s ease; }
 .nav-item .material-icons-round { font-size: 1.5rem; margin-bottom: 2px; }
 .nav-text { font-size: 0.75rem; font-weight: 500; }
-
-/* Active State for Bottom Nav */
 .nav-item.active { color: var(--primary-color); transform: translateY(-2px); }
 body.dark-mode .nav-item.active { color: var(--primary-color-dark); }
 
+/* 7. ZIKR COUNTER STYLES */
+.zikr-container { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 65vh; text-align: center; }
+.zikr-title { color: var(--primary-color); margin-bottom: 2.5rem; font-size: 2.2rem; }
+body.dark-mode .zikr-title { color: var(--primary-color-dark); }
+.zikr-display {
+    background: var(--card-bg); border-radius: 50%; width: 200px; height: 200px;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 10px 30px rgba(207, 167, 51, 0.2); border: 5px solid var(--primary-color);
+    margin-bottom: 3rem; transition: transform 0.1s ease-out;
+}
+body.dark-mode .zikr-display { background: var(--card-bg-dark); border-color: var(--primary-color-dark); box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1); }
+#zikr-count { font-size: 4.5rem; font-weight: 700; color: var(--text-color); font-family: 'Poppins', sans-serif; }
+body.dark-mode #zikr-count { color: var(--text-color-dark); }
+.zikr-btn {
+    background: var(--primary-color); color: var(--bg-color); border: none; border-radius: 40px;
+    padding: 1.2rem 4rem; font-size: 1.5rem; font-weight: 600; display: flex; align-items: center; gap: 10px;
+    cursor: pointer; box-shadow: var(--shadow-md); transition: all 0.2s; -webkit-tap-highlight-color: transparent;
+}
+body.dark-mode .zikr-btn { background: var(--primary-color-dark); color: var(--bg-color-dark); }
+.zikr-btn:active { transform: scale(0.92); box-shadow: var(--shadow-sm); }
+.tap-icon { font-size: 2rem; }
+.zikr-reset { background: none; border: none; color: #888; margin-top: 2.5rem; display: flex; align-items: center; gap: 5px; font-size: 1rem; cursor: pointer; transition: color 0.2s; }
+.zikr-reset:hover { color: var(--text-color); }
+body.dark-mode .zikr-reset:hover { color: var(--text-color-dark); }
 
-/* --- Misc & Loading --- */
-footer { text-align: center; padding: 2rem; opacity: 0.7; font-size: 0.9rem; }
-#contact-section a { color: var(--primary-color); text-decoration: none; }
+/* 8. RAMADAN STYLES */
+.ramadan-container { padding: 1rem; text-align: center; }
+.ramadan-icon { font-size: 4rem; color: var(--primary-color); margin-bottom: 1rem; }
+.ramadan-title { font-size: 2.2rem; color: var(--primary-color); margin-bottom: 2rem; }
+body.dark-mode .ramadan-title { color: var(--primary-color-dark); }
+.ramadan-card {
+    background: var(--card-bg); border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem;
+    box-shadow: var(--shadow-sm); border: 1px solid var(--timeline-color); text-align: left;
+}
+body.dark-mode .ramadan-card { background: var(--card-bg-dark); border-color: var(--timeline-color-dark); box-shadow: var(--shadow-sm-dark); }
+.ramadan-card h3 { color: var(--secondary-color); margin-top: 0; font-size: 1.4rem; }
+body.dark-mode .ramadan-card h3 { color: var(--secondary-color-dark); }
+.arabic-text { font-family: 'Amiri', serif; font-size: 2rem; text-align: center; color: var(--primary-color); margin: 1.5rem 0; line-height: 1.5; }
+body.dark-mode .arabic-text { color: var(--primary-color-dark); }
+.dua-meaning { display: block; font-style: italic; color: #888; margin-top: 1rem; text-align: center; }
+.quran-ref { display: block; font-weight: 600; color: var(--primary-color); margin-top: 1rem; text-align: right; }
+body.dark-mode .quran-ref { color: var(--primary-color-dark); }
+
+/* Misc & Loading */
 .loading-spinner {
     border: 3px solid var(--timeline-color); border-top: 3px solid var(--primary-color);
-    border-radius: 50%; width: 40px; height: 40px;
-    animation: spin 1s linear infinite; margin: 5rem auto;
+    border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 5rem auto;
 }
 body.dark-mode .loading-spinner { border-color: var(--timeline-color-dark); border-top-color: var(--primary-color-dark); }
 @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); }}
-
-/* Install Button (Hidden by default) */
 .install-button { display: flex; align-items: center; gap: 5px; background: var(--primary-color); color: var(--bg-color); border: none; padding: 8px 12px; border-radius: 20px; font-weight: 600; cursor: pointer; }
