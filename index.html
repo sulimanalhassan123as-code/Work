@@ -46,6 +46,18 @@
       <div class="zikr-container">
         <h2 class="zikr-title">Digital Tasbih</h2>
         
+        <div class="zikr-select-container">
+          <select id="zikr-selector" class="zikr-dropdown">
+            <option value="subhanallah">SubhanAllah (Glory be to Allah)</option>
+            <option value="alhamdulillah">Alhamdulillah (Praise be to Allah)</option>
+            <option value="allahuakbar">Allahu Akbar (Allah is Greatest)</option>
+            <option value="lailahaillallah">La ilaha illallah (None has the right to be worshipped but Allah)</option>
+            <option value="astaghfirullah">Astaghfirullah (I seek forgiveness from Allah)</option>
+            <option value="salawat">Salawat (Blessings on the Prophet ﷺ)</option>
+            <option value="custom">General Counter</option>
+          </select>
+        </div>
+        
         <div class="zikr-display">
           <span id="zikr-count">0</span>
         </div>
@@ -56,7 +68,7 @@
         </button>
         
         <button id="zikr-reset-btn" class="zikr-reset">
-          <span class="material-icons-round">refresh</span> Reset Count
+          <span class="material-icons-round">refresh</span> Reset This Count
         </button>
       </div>
     </section>
@@ -66,10 +78,10 @@
             <span class="material-icons-round ramadan-icon">nights_stay</span>
             <h2 class="ramadan-title">Ramadan Kareem</h2>
             
-            <div class="ramadan-card">
+            <div class="ramadan-card" id="daily-reminder-card">
               <h3>Daily Reminder</h3>
-              <p>"O you who have believed, decreed upon you is fasting as it was decreed upon those before you that you may become righteous."</p>
-              <span class="quran-ref">- Surah Al-Baqarah 2:183</span>
+              <p id="daily-quote-text">Loading daily wisdom...</p>
+              <span class="quran-ref" id="daily-quote-ref"></span>
             </div>
 
             <div class="ramadan-card">
@@ -109,4 +121,4 @@
 
   <script src="script.js"></script>
 </body>
-  </html>
+                </html>
