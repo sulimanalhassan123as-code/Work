@@ -1,369 +1,292 @@
-/* --- Core Styles & Color Variables --- */
+/* --- Core Variables & Premium Theme --- */
 :root {
-    /* Light Mode */
-    --bg-color: #FDFBF5;
-    --text-color: #3D352E;
-    --primary-color: #D4AF37;
+    /* Light Mode - Premium Gold & Cream */
+    --bg-color: #F9F6F0; /* Slightly warmer cream background */
+    --text-color: #2D2A26; /* Softer black */
+    --primary-color: #CFA733; /* Richer Gold */
+    --secondary-color: #204F45; /* Deep Islamic Green accent */
     --card-bg: #FFFFFF;
-    --timeline-color: #D3D3D3;
+    --timeline-color: #E0D8C8;
+    --glass-bg: rgba(255, 255, 255, 0.85); /* For frosted glass effect */
+    --glass-border: rgba(255, 255, 255, 0.9);
+    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
 
-    /* Dark Mode */
-    --bg-color-dark: #1A1D24;
-    --text-color-dark: #E0E7FF;
-    --primary-color-dark: #F0E68C;
-    --card-bg-dark: #2C303A;
-    --timeline-color-dark: #4A4E5A;
+    /* Dark Mode - Deep Night & Gold Glow */
+    --bg-color-dark: #121418; /* Deeper, richer black */
+    --text-color-dark: #E8E6E3; /* Soft off-white */
+    --primary-color-dark: #D4AF37; /* Classic Gold */
+    --secondary-color-dark: #4E8C7D; /* Muted Teal/Green */
+    --card-bg-dark: #1E222A;
+    --timeline-color-dark: #2C303A;
+    --glass-bg-dark: rgba(30, 34, 42, 0.85); /* Dark frosted glass */
+    --glass-border-dark: rgba(255, 255, 255, 0.1);
+    --shadow-sm-dark: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+    --shadow-md-dark: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+
+    /* Dimensions */
+    --bottom-nav-height: 65px;
+    --header-height: 70px;
 }
 
+/* --- Global Reset & Typography --- */
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     background-color: var(--bg-color);
     color: var(--text-color);
     transition: background-color 0.3s ease, color 0.3s ease;
+    /* Important for bottom nav */
+    padding-bottom: var(--bottom-nav-height); 
+    padding-top: var(--header-height);
+    overflow-x: hidden;
+}
+body.dark-mode { background-color: var(--bg-color-dark); color: var(--text-color-dark); }
+h1, h2, h3 { font-family: 'Amiri', serif; font-weight: 700; }
+
+/* --- 1. APP HEADER & SAFE LOGO --- */
+.app-header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: var(--header-height);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5rem;
+    /* Premium Glass Effect */
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    z-index: 100;
+}
+body.dark-mode .app-header {
+    background: var(--glass-bg-dark);
+    border-bottom: 1px solid var(--glass-border-dark);
 }
 
-body.dark-mode {
-    background-color: var(--bg-color-dark);
-    color: var(--text-color-dark);
-}
-
-/* --- Screen Management --- */
-.screen {
-    display: none;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-}
-
-.screen.active {
-    display: block;
-    opacity: 1;
-}
-
-/* --- Header Styles --- */
-header {
-    text-align: center;
-    padding: 2rem 1.5rem;
-    position: relative;
-}
-
-header h1 {
-    font-family: 'Amiri', serif;
-    font-size: 2.5rem;
+.logo-container { display: flex; align-items: center; gap: 10px; }
+/* The Safe CSS Logo Icon */
+.logo-icon {
+    font-size: 1.8rem;
     color: var(--primary-color);
+    /* Subtle glow animation */
+    animation: glow 3s ease-in-out infinite alternate;
+}
+@keyframes glow { from { text-shadow: 0 0 2px var(--primary-color); } to { text-shadow: 0 0 8px var(--primary-color); }}
+
+.app-header h1 {
+    font-size: 1.3rem;
     margin: 0;
-}
-
-body.dark-mode header h1 {
-    color: var(--primary-color-dark);
-}
-
-#dark-mode-toggle {
-    position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-    background: none;
-    border: 2px solid var(--timeline-color);
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    font-size: 1.5rem;
-    cursor: pointer;
-    transition: transform 0.2s ease, border-color 0.3s ease;
-}
-body.dark-mode #dark-mode-toggle {
-    border-color: var(--timeline-color-dark);
-}
-#dark-mode-toggle:hover {
-    transform: scale(1.1);
-}
-
-/* --- Timeline Styles --- */
-#timeline-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem;
-    position: relative;
-}
-
-#timeline-container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 4px;
-    height: 100%;
-    background-color: var(--timeline-color);
-    border-radius: 2px;
-}
-body.dark-mode #timeline-container::before {
-    background-color: var(--timeline-color-dark);
-}
-
-.era-section {
-    margin-bottom: 3rem;
-}
-
-.era-title {
-    text-align: center;
-    font-weight: bold;
-    font-size: 1.2rem;
-    background-color: var(--bg-color);
     color: var(--primary-color);
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    border: 2px solid var(--primary-color);
-    width: fit-content;
-    margin: 0 auto 2rem auto;
-    position: relative;
-    z-index: 1;
+    white-space: nowrap;
 }
-body.dark-mode .era-title {
-    background-color: var(--bg-color-dark);
-    color: var(--primary-color-dark);
-    border-color: var(--primary-color-dark);
+body.dark-mode .app-header h1 { color: var(--primary-color-dark); }
+
+/*Header Buttons*/
+.header-buttons { display: flex; align-items: center; gap: 10px; }
+#dark-mode-toggle {
+    background: none; border: none;
+    font-size: 1.4rem; cursor: pointer; padding: 5px;
+    color: var(--text-color);
+    transition: transform 0.2s ease;
+}
+body.dark-mode #dark-mode-toggle { color: var(--primary-color-dark); }
+#dark-mode-toggle:active { transform: scale(0.9); }
+
+
+/* --- 2. MAIN CONTENT & PAGE STRUCTURE --- */
+#app-content {
+    min-height: calc(100vh - var(--header-height) - var(--bottom-nav-height));
 }
 
-.prophet-card {
-    background-color: var(--card-bg);
-    border-radius: 15px;
-    padding: 1.5rem;
-    margin-bottom: 2rem;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+/* This hides pages that aren't active */
+.app-page {
+    display: none;
+    padding: 1.5rem 1rem;
+    animation: fadeIn 0.3s ease;
+}
+/* This shows the active page */
+.app-page.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); }}
+
+/* Placeholder content styles */
+.placeholder-content {
+    text-align: center;
+    padding: 3rem 1rem;
+    opacity: 0.7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+
+/* --- 3. MODERN SEARCH BAR --- */
+.search-container { margin-bottom: 1.5rem; padding: 0 0.5rem; }
+.search-wrapper {
+    position: relative;
+    display: flex; align-items: center;
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 2px 15px;
+    box-shadow: var(--shadow-sm);
     border: 1px solid var(--timeline-color);
 }
-body.dark-mode .prophet-card {
-    background-color: var(--card-bg-dark);
+body.dark-mode .search-wrapper {
+    background: var(--card-bg-dark);
     border-color: var(--timeline-color-dark);
-    box-shadow: none;
+    box-shadow: var(--shadow-sm-dark);
 }
-.prophet-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-}
-.prophet-card h2 {
-    font-family: 'Amiri', serif;
-    font-size: 2rem;
-    margin: 0 0 0.5rem 0;
+.search-icon { color: var(--primary-color); margin-right: 10px; font-size: 1.2rem; }
+#search-bar {
+    border: none; background: none; outline: none;
+    padding: 12px 0; width: 100%;
+    font-family: 'Poppins', sans-serif; font-size: 1rem;
     color: var(--text-color);
 }
-body.dark-mode .prophet-card h2 {
-    color: var(--text-color-dark);
+body.dark-mode #search-bar { color: var(--text-color-dark); }
+
+
+/* --- 4. TIMELINE & CARDS (Redesigned) --- */
+#timeline-container { position: relative; max-width: 800px; margin: 0 auto; }
+/* The center line */
+#timeline-container::before {
+    content: ''; position: absolute; top: 0; left: 20px; /* Left-aligned for mobile */
+    width: 3px; height: 100%;
+    background: linear-gradient(to bottom, var(--primary-color), var(--timeline-color) 80%, transparent);
+    border-radius: 2px; opacity: 0.5;
 }
-.prophet-card p {
-    margin: 0;
-    opacity: 0.8;
+body.dark-mode #timeline-container::before {
+    background: linear-gradient(to bottom, var(--primary-color-dark), var(--timeline-color-dark) 80%, transparent);
 }
 
-/* --- Details Screen Styles --- */
-#details-screen {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 1.5rem;
+.era-section { margin-bottom: 2.5rem; position: relative; }
+.era-title {
+    display: inline-block; margin-left: 40px; margin-bottom: 1rem;
+    font-weight: 600; font-size: 0.95rem;
+    color: var(--secondary-color);
+    text-transform: uppercase; letter-spacing: 1px;
 }
+body.dark-mode .era-title { color: var(--secondary-color-dark); }
 
-.details-header {
-    padding: 0;
-    text-align: left;
-}
-
-#back-button {
-    background: none;
-    border: none;
-    font-size: 1rem;
-    font-weight: bold;
-    color: var(--text-color);
-    cursor: pointer;
-    padding: 0.5rem 0;
-}
-body.dark-mode #back-button {
-    color: var(--text-color-dark);
-}
-
-#prophet-details-content h1 {
-    font-family: 'Amiri', serif;
-    font-size: 3rem;
-    margin: 1rem 0;
-    color: var(--primary-color);
-}
-body.dark-mode #prophet-details-content h1 {
-    color: var(--primary-color-dark);
-}
-
-.detail-section {
-    margin-bottom: 2rem;
-}
-.detail-section h3 {
-    border-bottom: 2px solid var(--primary-color);
-    padding-bottom: 0.5rem;
-    margin-bottom: 1rem;
-}
-body.dark-mode .detail-section h3 {
-    border-bottom-color: var(--primary-color-dark);
-}
-.detail-section ul {
-    padding-left: 20px;
-    list-style-type: '— ';
-}
-
-.youtube-embed {
+/* Premium Glass-Effect Cards */
+.prophet-card {
     position: relative;
-    width: 100%;
-    padding-bottom: 56.25%;
-    height: 0;
-    overflow: hidden;
-    border-radius: 15px;
-    margin-top: 1rem;
-}
-.youtube-embed iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
-}
-
-/* --- Install App Section --- */
-.install-app-container {
-    display: flex;
-    justify-content: center;
-    margin: 2rem auto;
-    padding: 1rem;
-}
-
-.install-card {
-    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-    color: #fff;
-    padding: 2rem;
-    border-radius: 1.5rem;
-    text-align: center;
-    max-width: 400px;
-    width: 100%;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    animation: fadeInUp 0.8s ease-in-out;
-}
-
-.install-title {
-    font-size: 1.4rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-}
-
-.install-text {
-    font-size: 1rem;
-    opacity: 0.9;
-    margin-bottom: 1rem;
-}
-
-.install-button {
-    background: #FFD700;
-    color: #111;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 0.75rem;
-    font-size: 1.1rem;
+    margin-left: 40px; /* Space for timeline */
+    margin-bottom: 1.5rem;
+    padding: 1.2rem;
+    border-radius: 16px;
+    background: var(--card-bg);
+    border: 1px solid var(--timeline-color);
+    box-shadow: var(--shadow-sm);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+    /* Subtle pattern overlay for premium feel (Optional) */
+    background-image: radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.03) 0%, transparent 20%);
 }
-
-.install-button:hover {
-    background: #ffea00;
-    transform: scale(1.05);
+body.dark-mode .prophet-card {
+    background: var(--card-bg-dark);
+    border-color: var(--timeline-color-dark);
+    box-shadow: var(--shadow-sm-dark);
 }
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* --- Footer & Loading Styles --- */
-footer {
-    text-align: center;
-    padding: 2rem;
-    opacity: 0.7;
-}
-
-#contact-section a {
-    color: var(--text-color);
-    text-decoration: none;
-    font-weight: 600;
-}
-body.dark-mode #contact-section a {
-    color: var(--text-color-dark);
-}
-
-.loading-spinner {
-    border: 5px solid var(--timeline-color);
-    border-top: 5px solid var(--primary-color);
+/* Little dot on the timeline */
+.prophet-card::before {
+    content: ''; position: absolute; top: 20px; left: -26px;
+    width: 12px; height: 12px;
+    background: var(--primary-color);
+    border: 3px solid var(--bg-color);
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    animation: spin 1s linear infinite;
-    margin: 5rem auto;
+    box-shadow: 0 0 0 2px var(--primary-color);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
-body.dark-mode .loading-spinner {
-    border: 5px solid var(--timeline-color-dark);
-    border-top: 5px solid var(--primary-color-dark);
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+body.dark-mode .prophet-card::before {
+    background: var(--primary-color-dark);
+    border-color: var(--bg-color-dark);
+    box-shadow: 0 0 0 2px var(--primary-color-dark);
 }
 
-/* --- Responsive Design --- */
-@media (max-width: 600px) {
-    header h1 { font-size: 2rem; }
-    #timeline-container { padding: 1rem; }
-    #timeline-container::before, .era-title {
-        left: 20px;
-        transform: none;
-    }
-    .prophet-card {
-        width: calc(100% - 40px);
-        margin-left: 40px;
-    }
-    }
-/* ----------- INSTALL BUTTON STYLE ----------- */
-.install-button {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: linear-gradient(135deg, #00c6ff, #0072ff);
-  color: white;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 600;
-  padding: 10px 18px;
-  border: none;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 114, 255, 0.4);
-  cursor: pointer;
-  transition: all 0.3s ease;
+.prophet-card:active { transform: scale(0.98); }
+.prophet-card h2 { font-size: 1.5rem; margin: 0 0 0.5rem 0; color: var(--text-color); }
+body.dark-mode .prophet-card h2 { color: var(--text-color-dark); }
+.prophet-card p { margin: 0; font-size: 0.9rem; opacity: 0.8; line-height: 1.5; }
+
+
+/* --- 5. DETAILS SCREEN OVERLAY --- */
+.screen {
+    display: none; position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--bg-color); z-index: 200; /* Above header */
+    overflow-y: auto; padding: 1rem;
+    animation: slideUp 0.3s ease-in-out;
+}
+body.dark-mode .screen { background: var(--bg-color-dark); }
+.screen.active { display: block; }
+@keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); }}
+
+.details-header { padding-bottom: 1rem; }
+#back-button {
+    background: none; border: none;
+    display: flex; align-items: center; gap: 5px;
+    font-size: 1rem; font-weight: 600; color: var(--text-color);
+    cursor: pointer; padding: 0.5rem 0;
+}
+body.dark-mode #back-button { color: var(--text-color-dark); }
+#prophet-details-content h1 { font-size: 2.5rem; color: var(--primary-color); margin: 0.5rem 0 1.5rem 0; }
+body.dark-mode #prophet-details-content h1 { color: var(--primary-color-dark); }
+
+.detail-section { margin-bottom: 2rem; background: var(--card-bg); padding: 1.5rem; border-radius: 12px; box-shadow: var(--shadow-sm); }
+body.dark-mode .detail-section { background: var(--card-bg-dark); box-shadow: var(--shadow-sm-dark); }
+.detail-section h3 { color: var(--primary-color); margin-top: 0; }
+body.dark-mode .detail-section h3 { color: var(--primary-color-dark); }
+.detail-section ul { padding-left: 20px; line-height: 1.6; }
+.youtube-embed { border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-md); }
+
+
+/* --- 6. BOTTOM NAVIGATION BAR (The Star Show) --- */
+.bottom-nav {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    height: var(--bottom-nav-height);
+    background: var(--card-bg);
+    display: flex; justify-content: space-around; align-items: center;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+    z-index: 150;
+    /* Glass effect */
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(0,0,0,0.05);
+}
+body.dark-mode .bottom-nav {
+    background: var(--glass-bg-dark);
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+    border-top: 1px solid var(--glass-border-dark);
 }
 
-.install-button:hover {
-  transform: scale(1.05);
-  background: linear-gradient(135deg, #0072ff, #00c6ff);
-  box-shadow: 0 6px 16px rgba(0, 114, 255, 0.6);
+.nav-item {
+    display: flex; flex-direction: column; align-items: center;
+    text-decoration: none; color: #888;
+    padding: 5px; transition: all 0.2s ease;
 }
+.nav-item .material-icons-round { font-size: 1.5rem; margin-bottom: 2px; }
+.nav-text { font-size: 0.75rem; font-weight: 500; }
 
-.install-icon {
-  font-size: 1.2em;
-  animation: pulse 2s infinite;
+/* Active State for Bottom Nav */
+.nav-item.active { color: var(--primary-color); transform: translateY(-2px); }
+body.dark-mode .nav-item.active { color: var(--primary-color-dark); }
+
+
+/* --- Misc & Loading --- */
+footer { text-align: center; padding: 2rem; opacity: 0.7; font-size: 0.9rem; }
+#contact-section a { color: var(--primary-color); text-decoration: none; }
+.loading-spinner {
+    border: 3px solid var(--timeline-color); border-top: 3px solid var(--primary-color);
+    border-radius: 50%; width: 40px; height: 40px;
+    animation: spin 1s linear infinite; margin: 5rem auto;
 }
+body.dark-mode .loading-spinner { border-color: var(--timeline-color-dark); border-top-color: var(--primary-color-dark); }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); }}
 
-/* subtle glowing animation */
-@keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.7; transform: scale(1.2); }
-        }
+/* Install Button (Hidden by default) */
+.install-button { display: flex; align-items: center; gap: 5px; background: var(--primary-color); color: var(--bg-color); border: none; padding: 8px 12px; border-radius: 20px; font-weight: 600; cursor: pointer; }
