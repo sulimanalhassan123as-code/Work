@@ -17,6 +17,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const zikrTapBtn = document.getElementById('zikr-tap-btn');
   const zikrResetBtn = document.getElementById('zikr-reset-btn');
   const zikrDisplayBox = document.querySelector('.zikr-display');
+  const zikrSelector = document.getElementById('zikr-selector');
+
+  // Ramadan Elements
+  const dailyQuoteText = document.getElementById('daily-quote-text');
+  const dailyQuoteRef = document.getElementById('daily-quote-ref');
 
   let deferredPrompt;
   let prophetsData = [];
@@ -25,14 +30,12 @@ document.addEventListener('DOMContentLoaded', () => {
   navItems.forEach(item => {
     item.addEventListener('click', (e) => {
       e.preventDefault();
-      
       navItems.forEach(nav => nav.classList.remove('active'));
       appPages.forEach(page => page.classList.remove('active'));
       
       item.classList.add('active');
       const targetId = item.getAttribute('data-target');
       document.getElementById(targetId).classList.add('active');
-      
       window.scrollTo(0, 0);
     });
   });
@@ -41,12 +44,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const setupDarkMode = () => {
     const saved = localStorage.getItem('theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
     if (saved === 'dark' || (!saved && prefersDark)) {
       document.body.classList.add('dark-mode');
       darkModeToggle.textContent = '☀️';
     }
-
     darkModeToggle.addEventListener('click', () => {
       document.body.classList.toggle('dark-mode');
       const dark = document.body.classList.contains('dark-mode');
@@ -76,7 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
     eras.forEach(era => {
       const eraDiv = document.createElement('div');
       eraDiv.className = 'era-section';
-      
       const eraTitle = document.createElement('div');
       eraTitle.className = 'era-title';
       eraTitle.textContent = era;
@@ -111,7 +111,6 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       </div>
     `;
-    
     detailsScreen.classList.add('active');
     document.body.style.overflow = 'hidden'; 
   };
@@ -126,53 +125,84 @@ document.addEventListener('DOMContentLoaded', () => {
     searchBar.addEventListener('input', (e) => {
       const searchTerm = e.target.value.toLowerCase();
       const cards = document.querySelectorAll('.prophet-card');
-
       cards.forEach(card => {
         const name = card.querySelector('h2').textContent.toLowerCase();
-        if (name.includes(searchTerm)) {
-          card.style.display = 'block';
-        } else {
-          card.style.display = 'none';
-        }
+        if (name.includes(searchTerm)) { card.style.display = 'block'; } else { card.style.display = 'none'; }
       });
-
       const eraSections = document.querySelectorAll('.era-section');
       eraSections.forEach(section => {
         const visibleCards = section.querySelectorAll('.prophet-card[style="display: block;"], .prophet-card:not([style="display: none;"])');
         const eraTitle = section.querySelector('.era-title');
-        if (visibleCards.length === 0) {
-          eraTitle.style.display = 'none';
-        } else {
-          eraTitle.style.display = 'inline-block';
-        }
+        if (visibleCards.length === 0) { eraTitle.style.display = 'none'; } else { eraTitle.style.display = 'inline-block'; }
       });
     });
   }
 
-  // --- 7. ZIKR COUNTER LOGIC ---
-  if (zikrCountDisplay && zikrTapBtn) {
-    let currentCount = localStorage.getItem('zikrCount') ? parseInt(localStorage.getItem('zikrCount')) : 0;
+  // --- 7. MULTI-ZIKR COUNTER LOGIC ---
+  if (zikrCountDisplay && zikrTapBtn && zikrSelector) {
+    // Determine which Zikr we are currently tracking
+    let currentZikrKey = 'zikr_' + zikrSelector.value; 
+
+    // Function to load the specific count
+    const loadCount = () => {
+      let saved = localStorage.getItem(currentZikrKey);
+      return saved ? parseInt(saved) : 0;
+    };
+
+    let currentCount = loadCount();
     zikrCountDisplay.textContent = currentCount;
 
+    // When user changes the dropdown to a different Zikr
+    zikrSelector.addEventListener('change', (e) => {
+      currentZikrKey = 'zikr_' + e.target.value;
+      currentCount = loadCount();
+      zikrCountDisplay.textContent = currentCount;
+    });
+
+    // When the TAP button is pressed
     zikrTapBtn.addEventListener('click', () => {
       currentCount++;
       zikrCountDisplay.textContent = currentCount;
-      localStorage.setItem('zikrCount', currentCount);
+      localStorage.setItem(currentZikrKey, currentCount);
       
+      // Bump animation
       zikrDisplayBox.style.transform = 'scale(1.05)';
       setTimeout(() => { zikrDisplayBox.style.transform = 'scale(1)'; }, 100);
     });
 
+    // When the RESET button is pressed
     zikrResetBtn.addEventListener('click', () => {
-      if (confirm('Are you sure you want to reset your Zikr count to 0?')) {
+      if (confirm('Are you sure you want to reset this specific count to 0?')) {
         currentCount = 0;
         zikrCountDisplay.textContent = currentCount;
-        localStorage.setItem('zikrCount', currentCount);
+        localStorage.setItem(currentZikrKey, currentCount);
       }
     });
   }
 
-  // --- 8. PWA INSTALL LOGIC ---
+  // --- 8. AUTO-UPDATING DAILY RAMADAN QUOTES ---
+  if (dailyQuoteText && dailyQuoteRef) {
+    const dailyQuotes = [
+      { text: "\"O you who have believed, decreed upon you is fasting as it was decreed upon those before you that you may become righteous.\"", ref: "- Surah Al-Baqarah 2:183" },
+      { text: "\"Whoever fasts Ramadan out of faith and in the hope of reward, his previous sins will be forgiven.\"", ref: "- Sahih Bukhari" },
+      { text: "\"The month of Ramadhan [is that] in which was revealed the Qur'an, a guidance for the people...\"", ref: "- Surah Al-Baqarah 2:185" },
+      { text: "\"Fasting is a shield with which a servant protects himself from the Fire.\"", ref: "- Musnad Ahmad" },
+      { text: "\"When the month of Ramadan begins, the gates of heaven are opened, the gates of Hellfire are closed, and the devils are chained.\"", ref: "- Sahih Bukhari" },
+      { text: "\"And when My servants ask you, [O Muhammad], concerning Me - indeed I am near. I respond to the invocation of the supplicant when he calls upon Me.\"", ref: "- Surah Al-Baqarah 2:186" },
+      { text: "\"There is a gate in Paradise called Ar-Rayyan, and those who observe fasts will enter through it on the Day of Resurrection...\"", ref: "- Sahih Bukhari" }
+    ];
+
+    // Math to pick a different quote based on the current day of the year
+    const today = new Date();
+    const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
+    const quoteIndex = dayOfYear % dailyQuotes.length;
+
+    // Inject today's quote into the HTML
+    dailyQuoteText.textContent = dailyQuotes[quoteIndex].text;
+    dailyQuoteRef.textContent = dailyQuotes[quoteIndex].ref;
+  }
+
+  // --- 9. PWA INSTALL LOGIC ---
   window.addEventListener('beforeinstallprompt', e => {
     e.preventDefault();
     deferredPrompt = e;
@@ -185,7 +215,6 @@ document.addEventListener('DOMContentLoaded', () => {
       deferredPrompt.prompt();
       const { outcome } = await deferredPrompt.userChoice;
       deferredPrompt = null;
-      console.log('User choice:', outcome);
     }
   });
 
