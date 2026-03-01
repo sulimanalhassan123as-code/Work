@@ -1,17 +1,40 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const timelineScreen = document.getElementById('timeline-screen');
-  const detailsScreen = document.getElementById('details-screen');
+  // --- DOM ELEMENTS ---
   const timelineContainer = document.getElementById('timeline-container');
   const prophetDetailsContent = document.getElementById('prophet-details-content');
+  const detailsScreen = document.getElementById('details-screen');
   const backButton = document.getElementById('back-button');
   const darkModeToggle = document.getElementById('dark-mode-toggle');
-  const whatsappLink = document.getElementById('whatsapp-link');
-  const contactLink = document.getElementById('contact-link');
   const installBtn = document.getElementById('install-btn');
+  const searchBar = document.getElementById('search-bar');
+  
+  // Navigation Elements
+  const navItems = document.querySelectorAll('.nav-item');
+  const appPages = document.querySelectorAll('.app-page');
+
   let deferredPrompt;
   let prophetsData = [];
 
-  const WHATSAPP_GROUP_URL = 'https://chat.whatsapp.com/KR69AWXAxZ7JApiG2u2JiG';
+  // --- BOTTOM NAVIGATION LOGIC ---
+  navItems.forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+      
+      // 1. Remove active class from all tabs and pages
+      navItems.forEach(nav => nav.classList.remove('active'));
+      appPages.forEach(page => page.classList.remove('active'));
+      
+      // 2. Add active class to the clicked tab
+      item.classList.add('active');
+      
+      // 3. Show the correct page
+      const targetId = item.getAttribute('data-target');
+      document.getElementById(targetId).classList.add('active');
+      
+      // 4. Scroll to top when switching pages
+      window.scrollTo(0, 0);
+    });
+  });
 
   // --- DARK MODE ---
   const setupDarkMode = () => {
@@ -34,6 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- FETCH PROPHETS ---
   const fetchProphets = async () => {
     try {
+      // Using the safe local fetch we established!
       const res = await fetch('./prophets.json');
       if (!res.ok) throw new Error('Network issue');
       prophetsData = await res.json();
@@ -44,13 +68,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  // --- RENDER TIMELINE ---
   const renderTimeline = () => {
+    // Clear out the loading spinner
     timelineContainer.innerHTML = '';
     const eras = [...new Set(prophetsData.map(p => p.era))];
 
     eras.forEach(era => {
       const eraDiv = document.createElement('div');
       eraDiv.className = 'era-section';
+      
       const eraTitle = document.createElement('div');
       eraTitle.className = 'era-title';
       eraTitle.textContent = era;
@@ -68,6 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
+  // --- SHOW PROPHET DETAILS ---
   const showDetails = id => {
     const prophet = prophetsData.find(p => p.id === id);
     if (!prophet) return;
@@ -84,28 +112,54 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       </div>
     `;
-    timelineScreen.classList.remove('active');
+    
+    // Show the overlay screen
     detailsScreen.classList.add('active');
-    window.scrollTo(0, 0);
+    // Prevent background scrolling while reading details
+    document.body.style.overflow = 'hidden'; 
   };
 
-  const showTimeline = () => {
+  // --- HIDE PROPHET DETAILS ---
+  backButton.addEventListener('click', () => {
     detailsScreen.classList.remove('active');
-    timelineScreen.classList.add('active');
-  };
-
-  backButton.addEventListener('click', showTimeline);
-  whatsappLink.href = WHATSAPP_GROUP_URL;
-  contactLink.addEventListener('click', e => {
-    e.preventDefault();
-    alert('Contact feature coming soon!');
+    // Restore background scrolling
+    document.body.style.overflow = 'auto';
   });
+
+  // --- LIVE SEARCH FILTER ---
+  if (searchBar) {
+    searchBar.addEventListener('input', (e) => {
+      const searchTerm = e.target.value.toLowerCase();
+      const cards = document.querySelectorAll('.prophet-card');
+
+      cards.forEach(card => {
+        const name = card.querySelector('h2').textContent.toLowerCase();
+        if (name.includes(searchTerm)) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      // Hide Era titles if all cards in that era are hidden
+      const eraSections = document.querySelectorAll('.era-section');
+      eraSections.forEach(section => {
+        const visibleCards = section.querySelectorAll('.prophet-card[style="display: block;"], .prophet-card:not([style="display: none;"])');
+        const eraTitle = section.querySelector('.era-title');
+        if (visibleCards.length === 0) {
+          eraTitle.style.display = 'none';
+        } else {
+          eraTitle.style.display = 'inline-block';
+        }
+      });
+    });
+  }
 
   // --- PWA INSTALL LOGIC ---
   window.addEventListener('beforeinstallprompt', e => {
     e.preventDefault();
     deferredPrompt = e;
-    installBtn.style.display = 'inline-block';
+    installBtn.style.display = 'flex'; // Changed to flex for the icon
   });
 
   installBtn.addEventListener('click', async () => {
@@ -118,9 +172,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // --- INITIALIZE ---
   setupDarkMode();
   fetchProphets();
 
+  // Register Service Worker
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('service-worker.js').then(() => console.log('SW registered'));
   }
