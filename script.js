@@ -12,31 +12,32 @@ document.addEventListener('DOMContentLoaded', () => {
   const navItems = document.querySelectorAll('.nav-item');
   const appPages = document.querySelectorAll('.app-page');
 
+  // Zikr Elements
+  const zikrCountDisplay = document.getElementById('zikr-count');
+  const zikrTapBtn = document.getElementById('zikr-tap-btn');
+  const zikrResetBtn = document.getElementById('zikr-reset-btn');
+  const zikrDisplayBox = document.querySelector('.zikr-display');
+
   let deferredPrompt;
   let prophetsData = [];
 
-  // --- BOTTOM NAVIGATION LOGIC ---
+  // --- 1. BOTTOM NAVIGATION LOGIC ---
   navItems.forEach(item => {
     item.addEventListener('click', (e) => {
       e.preventDefault();
       
-      // 1. Remove active class from all tabs and pages
       navItems.forEach(nav => nav.classList.remove('active'));
       appPages.forEach(page => page.classList.remove('active'));
       
-      // 2. Add active class to the clicked tab
       item.classList.add('active');
-      
-      // 3. Show the correct page
       const targetId = item.getAttribute('data-target');
       document.getElementById(targetId).classList.add('active');
       
-      // 4. Scroll to top when switching pages
       window.scrollTo(0, 0);
     });
   });
 
-  // --- DARK MODE ---
+  // --- 2. DARK MODE ---
   const setupDarkMode = () => {
     const saved = localStorage.getItem('theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -54,10 +55,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
-  // --- FETCH PROPHETS ---
+  // --- 3. FETCH PROPHETS ---
   const fetchProphets = async () => {
     try {
-      // Using the safe local fetch we established!
       const res = await fetch('./prophets.json');
       if (!res.ok) throw new Error('Network issue');
       prophetsData = await res.json();
@@ -68,9 +68,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // --- RENDER TIMELINE ---
+  // --- 4. RENDER TIMELINE ---
   const renderTimeline = () => {
-    // Clear out the loading spinner
     timelineContainer.innerHTML = '';
     const eras = [...new Set(prophetsData.map(p => p.era))];
 
@@ -95,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
-  // --- SHOW PROPHET DETAILS ---
+  // --- 5. SHOW/HIDE PROPHET DETAILS ---
   const showDetails = id => {
     const prophet = prophetsData.find(p => p.id === id);
     if (!prophet) return;
@@ -113,20 +112,16 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     `;
     
-    // Show the overlay screen
     detailsScreen.classList.add('active');
-    // Prevent background scrolling while reading details
     document.body.style.overflow = 'hidden'; 
   };
 
-  // --- HIDE PROPHET DETAILS ---
   backButton.addEventListener('click', () => {
     detailsScreen.classList.remove('active');
-    // Restore background scrolling
     document.body.style.overflow = 'auto';
   });
 
-  // --- LIVE SEARCH FILTER ---
+  // --- 6. LIVE SEARCH FILTER ---
   if (searchBar) {
     searchBar.addEventListener('input', (e) => {
       const searchTerm = e.target.value.toLowerCase();
@@ -141,7 +136,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
-      // Hide Era titles if all cards in that era are hidden
       const eraSections = document.querySelectorAll('.era-section');
       eraSections.forEach(section => {
         const visibleCards = section.querySelectorAll('.prophet-card[style="display: block;"], .prophet-card:not([style="display: none;"])');
@@ -155,11 +149,34 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- PWA INSTALL LOGIC ---
+  // --- 7. ZIKR COUNTER LOGIC ---
+  if (zikrCountDisplay && zikrTapBtn) {
+    let currentCount = localStorage.getItem('zikrCount') ? parseInt(localStorage.getItem('zikrCount')) : 0;
+    zikrCountDisplay.textContent = currentCount;
+
+    zikrTapBtn.addEventListener('click', () => {
+      currentCount++;
+      zikrCountDisplay.textContent = currentCount;
+      localStorage.setItem('zikrCount', currentCount);
+      
+      zikrDisplayBox.style.transform = 'scale(1.05)';
+      setTimeout(() => { zikrDisplayBox.style.transform = 'scale(1)'; }, 100);
+    });
+
+    zikrResetBtn.addEventListener('click', () => {
+      if (confirm('Are you sure you want to reset your Zikr count to 0?')) {
+        currentCount = 0;
+        zikrCountDisplay.textContent = currentCount;
+        localStorage.setItem('zikrCount', currentCount);
+      }
+    });
+  }
+
+  // --- 8. PWA INSTALL LOGIC ---
   window.addEventListener('beforeinstallprompt', e => {
     e.preventDefault();
     deferredPrompt = e;
-    installBtn.style.display = 'flex'; // Changed to flex for the icon
+    installBtn.style.display = 'flex';
   });
 
   installBtn.addEventListener('click', async () => {
