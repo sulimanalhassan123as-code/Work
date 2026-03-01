@@ -27,7 +27,6 @@
       </div>
   </header>
 
-
   <main id="app-content">
 
     <section id="timeline-page" class="app-page active">
@@ -43,26 +42,46 @@
       </div>
     </section>
 
-
     <section id="zikr-page" class="app-page">
-      <div class="placeholder-content">
-        <span class="material-icons-round" style="font-size: 4rem; color: var(--primary-color);">all_inclusive</span>
-        <h2>Zikr & Du'a</h2>
-        <p>Your digital Tasbih counter is coming soon in the next step!</p>
+      <div class="zikr-container">
+        <h2 class="zikr-title">Digital Tasbih</h2>
+        
+        <div class="zikr-display">
+          <span id="zikr-count">0</span>
+        </div>
+        
+        <button id="zikr-tap-btn" class="zikr-btn">
+          <span class="material-icons-round tap-icon">touch_app</span>
+          TAP
+        </button>
+        
+        <button id="zikr-reset-btn" class="zikr-reset">
+          <span class="material-icons-round">refresh</span> Reset Count
+        </button>
       </div>
     </section>
 
-
     <section id="ramadan-page" class="app-page">
-        <div class="placeholder-content">
-            <span class="material-icons-round" style="font-size: 4rem; color: var(--primary-color);">nights_stay</span>
-            <h2>Ramadan Daily</h2>
-            <p>Daily lessons and inspirations coming soon!</p>
+        <div class="ramadan-container">
+            <span class="material-icons-round ramadan-icon">nights_stay</span>
+            <h2 class="ramadan-title">Ramadan Kareem</h2>
+            
+            <div class="ramadan-card">
+              <h3>Daily Reminder</h3>
+              <p>"O you who have believed, decreed upon you is fasting as it was decreed upon those before you that you may become righteous."</p>
+              <span class="quran-ref">- Surah Al-Baqarah 2:183</span>
+            </div>
+
+            <div class="ramadan-card">
+              <h3>Dua for Fasting</h3>
+              <p class="arabic-text">وَبِصَوْمِ غَدٍ نَّوَيْتُ مِنْ شَهْرِ رَمَضَانَ</p>
+              <p>Wa bisawmi ghadinn nawaiytu min shahri ramadan.</p>
+              <span class="dua-meaning">"I intend to keep the fast for tomorrow in the month of Ramadan."</span>
+            </div>
           </div>
     </section>
 
   </main>
-
 
   <div id="details-screen" class="screen">
     <header class="details-header">
@@ -72,7 +91,6 @@
     </header>
     <div id="prophet-details-content"></div>
   </div>
-
 
   <nav class="bottom-nav">
     <a href="#" class="nav-item active" data-target="timeline-page">
@@ -91,4 +109,4 @@
 
   <script src="script.js"></script>
 </body>
-            </html>
+  </html>
